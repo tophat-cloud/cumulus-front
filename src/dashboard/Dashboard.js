@@ -21,7 +21,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import Button from "@material-ui/core/Button";
 import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Chart";
-import Deposits from "./Overview";
+import Deposits from "./Statistics";
 import Orders from "./VulnerabilitiesList";
 
 import Copyright from "../base/Copyright";
@@ -152,8 +152,9 @@ export default function Dashboard() {
               <NotificationsIcon />
             </Badge>
           </IconButton> */}
-
-          <Button variant="outlined">Logout</Button>
+          <Link href="/signin" variant="body2">
+            <Button variant="outlined">Logout</Button>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
