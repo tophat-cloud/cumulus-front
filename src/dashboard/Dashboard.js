@@ -24,18 +24,7 @@ import Chart from "./Chart";
 import Deposits from "./Overview";
 import Orders from "./VulnerabilitiesList";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="#">
-        tophat-cloud
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Copyright from "../base/Copyright";
 
 const drawerWidth = 240;
 
