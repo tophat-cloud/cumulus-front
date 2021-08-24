@@ -49,7 +49,7 @@ export default function Orders() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Vulnerabilities List</Title>
+      <Title>Recent Vulnerabilities List</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
