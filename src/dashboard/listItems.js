@@ -10,22 +10,19 @@ import InfoIcon from "@material-ui/icons/Info";
 
 export const mainListItems = (
   <div>
-    <ListSubheader inset>Dashboard</ListSubheader>
-
+    {/* <ListSubheader inset>Dashboard</ListSubheader> */}
     <ListItem button component="a" href="/dashboard/overview">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Overview" />
     </ListItem>
-
     <ListItem button component="a" href="/dashboard/detail">
       <ListItemIcon>
         <DnsIcon />
       </ListItemIcon>
       <ListItemText primary="Detail list" />
     </ListItem>
-
     <ListItem button component="a" href="/dashboard/information">
       <ListItemIcon>
         <InfoIcon />

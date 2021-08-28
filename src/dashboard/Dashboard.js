@@ -14,8 +14,10 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
-import { mainListItems, secondaryListItems } from "./listItems";
+import Badge from "@material-ui/core/Badge";
+import NotificationsIcon from "@material-ui/icons/Notifications";
 
+import { mainListItems, secondaryListItems } from "./listItems";
 import { useStyles } from "./useStyles";
 import Copyright from "../base/Copyright";
 
@@ -32,6 +34,7 @@ export default function DashboardComponent({ children }) {
   return (
     <div className={classes.root}>
       <CssBaseline />
+
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
@@ -49,6 +52,7 @@ export default function DashboardComponent({ children }) {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography
             component="h1"
             variant="h6"
@@ -68,6 +72,7 @@ export default function DashboardComponent({ children }) {
           </Link>
         </Toolbar>
       </AppBar>
+
       <Drawer
         variant="permanent"
         classes={{
@@ -76,11 +81,16 @@ export default function DashboardComponent({ children }) {
         open={open}
       >
         <div className={classes.toolbarIcon}>
+          <div style={{ width: "100%", float: "left", marginLeft: "25px" }}>
+            Dashboard
+          </div>
+
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
         <Divider />
+
         <List>{mainListItems}</List>
         <Divider />
         <List>{secondaryListItems}</List>
