@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 // import Hello from "./Hello";
 // import Dashboard from "./dashboard/Dashboard";
-import OverviewComponent from "./dashboard/Overview";
+import OverviewComponent from "./dashboard/Overview/Overview";
 import SignIn from "./sign-in/SignIn";
 import SignUp from "./sign-in/SignUp";
 

@@ -4,8 +4,8 @@ import clsx from "clsx";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
-import DashboardComponent from "./Dashboard";
-import { useStyles } from "./useStyles";
+import DashboardComponent from "../Dashboard";
+import { useStyles } from "../useStyles";
 
 import Chart from "./Chart";
 import VulnerabilityDetection from "./Statistics";
