@@ -25,11 +25,10 @@ export default function Deposits() {
       <Typography color="textSecondary" className={classes.depositContext}>
         2021-08-18{" "}
       </Typography>
-      <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
+      {/* <Link color="primary" href="/dashboard/detail" onClick={preventDefault}> */}
+      {/* <Link color="primary" href="/dashboard/detail">
           View details
-        </Link>
-      </div>
+        </Link> */}
     </React.Fragment>
   );
 }

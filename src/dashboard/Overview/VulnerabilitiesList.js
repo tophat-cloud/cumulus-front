@@ -73,8 +73,9 @@ export default function Orders() {
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View details{" "}
+        {/* <Link color="primary" href="/dashboard/detail" onClick={preventDefault}> */}
+        <Link color="primary" href="/dashboard/detail">
+          View details
         </Link>
       </div>
     </React.Fragment>
