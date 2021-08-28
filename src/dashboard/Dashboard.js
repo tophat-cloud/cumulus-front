@@ -17,7 +17,6 @@ import Button from "@material-ui/core/Button";
 import { mainListItems, secondaryListItems } from "./listItems";
 
 import { useStyles } from "./useStyles";
-import NavigationBar from "../base/NavBar";
 import Copyright from "../base/Copyright";
 
 export default function DashboardComponent({ children }) {
@@ -29,13 +28,46 @@ export default function DashboardComponent({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* 네비게이션 바 */}
-      <NavigationBar></NavigationBar>
+      <AppBar
+        position="absolute"
+        className={clsx(classes.appBar, open && classes.appBarShift)}
+      >
+        <Toolbar className={classes.toolbar}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            className={clsx(
+              classes.menuButton,
+              open && classes.menuButtonHidden
+            )}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
+            Cumulus
+          </Typography>
+          {/* <IconButton color="inherit">
+            <Badge badgeContent={4} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton> */}
+          <Link href="/signin" variant="body2">
+            <Button variant="outlined">Logout</Button>
+          </Link>
+        </Toolbar>
+      </AppBar>
       <Drawer
         variant="permanent"
         classes={{
