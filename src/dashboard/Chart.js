@@ -27,7 +27,7 @@ const data = [
   createData("08-19", undefined),
 ];
 
-export default function Chart() {
+export default function Deposits() {
   const theme = useTheme();
 
   return (
