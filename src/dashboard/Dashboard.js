@@ -21,6 +21,17 @@ import { mainListItems, secondaryListItems } from "./listItems";
 import { useStyles } from "./useStyles";
 import Copyright from "../base/Copyright";
 
+const WhiteButton = () => {
+  return (
+    <Button
+      variant="outlined"
+      style={{ borderColor: "#e6e2d3", color: "#e6e2d3" }}
+    >
+      Logout
+    </Button>
+  );
+};
+
 export default function DashboardComponent({ children }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -68,7 +79,7 @@ export default function DashboardComponent({ children }) {
             </Badge>
           </IconButton> */}
           <Link href="/signin" variant="body2">
-            <Button variant="outlined">Logout</Button>
+            <WhiteButton></WhiteButton>
           </Link>
         </Toolbar>
       </AppBar>
