@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -38,6 +38,17 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
+  const [emailValue, setEmailValue] = useState("");
+  const [pwValue, setPwValue] = useState("");
+  const [confimValue, setConfimValue] = useState("");
+
+  const signUpPost = (email, pw, confirm, e) => {
+    e.preventDefault();
+    console.log(`email: ${email}`);
+    console.log(`pw: ${pw}`);
+    console.log(`confirm: ${confirm}`);
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -59,6 +70,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(event) => setEmailValue(event.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -71,6 +83,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(event) => setPwValue(event.target.value)}
               />
             </Grid>
 
@@ -84,15 +97,19 @@ export default function SignUp() {
                 type="password"
                 id="confirm"
                 autoComplete="current-password"
+                onChange={(event) => setConfimValue(event.target.value)}
               />
             </Grid>
           </Grid>
           <Button
-            type="submit"
+            // type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={(e) => {
+              signUpPost(emailValue, pwValue, confimValue, e);
+            }}
           >
             Sign Up
           </Button>
