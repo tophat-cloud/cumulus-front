@@ -13,6 +13,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
+import axios from "axios";
+
 import Copyright from "../base/Copyright";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,11 +44,41 @@ export default function SignUp() {
   const [pwValue, setPwValue] = useState("");
   const [confimValue, setConfimValue] = useState("");
 
-  const signUpPost = (email, pw, confirm, e) => {
+  const signUpPost = (e) => {
     e.preventDefault();
-    console.log(`email: ${email}`);
-    console.log(`pw: ${pw}`);
-    console.log(`confirm: ${confirm}`);
+    console.log(`email: ${emailValue}`);
+    console.log(`pw: ${pwValue}`);
+    console.log(`confirm: ${confimValue}`);
+
+    if (emailValue === "") {
+      alert("이메일을 입력해주세요");
+    } else if (pwValue === "" || confimValue === "") {
+      alert("비밀번호와 비밀번호 확인을 입력해주세요.");
+    } else if (pwValue === confimValue) {
+      alert("post 요청을 보냅니다");
+
+      axios
+        .post(
+          "http://ec2-13-124-85-76.ap-northeast-2.compute.amazonaws.com/api/member",
+          {
+            email: emailValue,
+            password: pwValue,
+          }
+        )
+        .then(function (response) {
+          alert(`응답 메시지: ${response}`);
+        })
+        .catch(function (error) {
+          alert(`에러 발생: ${error}`);
+        })
+        .then(function () {
+          console.log("이건 항상 실행");
+        });
+    } else {
+      alert(
+        "[비밀번호 확인 오류] 비밀번호가 다릅니다. 재입력후 다시 시도해주세요."
+      );
+    }
   };
 
   return (
@@ -108,7 +140,7 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
             onClick={(e) => {
-              signUpPost(emailValue, pwValue, confimValue, e);
+              signUpPost(e);
             }}
           >
             Sign Up
