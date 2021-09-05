@@ -123,15 +123,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-let rowsAxios = [
-  createData(
-    100,
-    "취약점 이름 연결1",
-    1,
-    "http://tophatplayground.wookingwoo.com/",
-    "2021.08.29"
-  ),
-];
+let rowsAxios = [];
 
 export default function DetailList() {
   // const classes = useStyles();
@@ -139,50 +131,17 @@ export default function DetailList() {
 
   const [rows, setRows] = useState([]);
 
-  // setTimeout(() => {
-  //   setRows(getThunder());
-  // }, 5000);
-
-  // const rows = getThunder();
-
   useEffect(() => {
-    async function fetchData() {
-      rowsAxios.push(
-        createData(
-          101,
-          "이건 나오고..",
-          1,
-          "http://tophatplayground.wookingwoo.com/",
-          "2021.08.29"
-        )
-      );
-
+    async function fetchThunder() {
       await axios
         .post("http://cumulus.tophat.cloud/api/thunder", {
           project_id: "KMsB9W4hZCejJ6D1fiESP",
         })
         .then(function (response) {
-          rowsAxios.push(
-            createData(
-              102,
-              "이게 나와야하는데..",
-              1,
-              "http://tophatplayground.wookingwoo.com/",
-              "2021.08.29"
-            )
-          );
-
           console.log(response);
           console.log(response.data);
 
           for (const thunderElement in response.data) {
-            console.log(`${thunderElement}: ${response.data[thunderElement]}`);
-            console.log(response.data[thunderElement]);
-            console.log(response.data[thunderElement]["thunder_name"]);
-            console.log(response.data[thunderElement]["priority"]);
-            console.log(response.data[thunderElement]["url"]);
-            console.log(response.data[thunderElement]["created_at"]);
-
             rowsAxios.push(
               createData(
                 thunderElement * 1 + 1,
@@ -199,18 +158,16 @@ export default function DetailList() {
           alert(`thunder를 불러오는 중 에러가 발생했습니다: ${error}`);
         })
         .then(function () {
-          // console.log("항상 실행");
+          // 항상 실행
           setRows(rowsAxios);
         });
 
       console.log("rowsAxios: ", rowsAxios);
     }
-    fetchData();
+    fetchThunder();
   }, []);
 
   console.log("rows: ", rows);
-
-  if (rows === []) return <></>;
 
   return (
     <DashboardComponent>
