@@ -44,6 +44,9 @@ export default function SignUp() {
   const [pwValue, setPwValue] = useState("");
   const [confimValue, setConfimValue] = useState("");
 
+  const reg_email =
+    /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
   const signUpPost = (e) => {
     e.preventDefault();
     console.log(`email: ${emailValue}`);
@@ -52,27 +55,32 @@ export default function SignUp() {
 
     if (emailValue === "") {
       alert("이메일을 입력해주세요");
+    } else if (!reg_email.test(emailValue)) {
+      alert("이메일 형식을 확인해주세요.");
     } else if (pwValue === "" || confimValue === "") {
       alert("비밀번호와 비밀번호 확인을 입력해주세요.");
     } else if (pwValue === confimValue) {
-      alert("post 요청을 보냅니다");
-
       axios
         .post(
-          "http://ec2-13-124-85-76.ap-northeast-2.compute.amazonaws.com/api/member",
+          "http://ec2-13-209-131-72.ap-northeast-2.compute.amazonaws.com/api/member",
           {
             email: emailValue,
             password: pwValue,
           }
         )
         .then(function (response) {
-          alert(`응답 메시지: ${response}`);
+          // console.log(response);
+          alert("회원가입이 완료되었습니다. 로그인 후 이용해주세요.");
+          window.location.pathname = "/signin"; // 로그인 페이지로 이동
         })
         .catch(function (error) {
-          alert(`에러 발생: ${error}`);
+          console.log(error.response);
+          alert(error.response["data"]["message"]);
+          // alert(`회원가입 중 에러가 발생했습니다: ${error}`);
+          // console.log(error);
         })
         .then(function () {
-          console.log("이건 항상 실행");
+          // console.log("항상 실행");
         });
     } else {
       alert(
