@@ -134,7 +134,7 @@ export default function DetailList() {
   useEffect(() => {
     async function fetchThunder() {
       await axios
-        .post("http://cumulus.tophat.cloud/api/thunder", {
+        .post("http://api.cumulus.tophat.cloud/thunder", {
           project_id: "KMsB9W4hZCejJ6D1fiESP",
         })
         .then(function (response) {

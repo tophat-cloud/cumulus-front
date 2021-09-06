@@ -61,13 +61,10 @@ export default function SignUp() {
       alert("비밀번호와 비밀번호 확인을 입력해주세요.");
     } else if (pwValue === confimValue) {
       axios
-        .post(
-          "http://ec2-13-209-131-72.ap-northeast-2.compute.amazonaws.com/api/member",
-          {
-            email: emailValue,
-            password: pwValue,
-          }
-        )
+        .post("http://api.cumulus.tophat.cloud/member", {
+          email: emailValue,
+          password: pwValue,
+        })
         .then(function (response) {
           // console.log(response);
           alert("회원가입이 완료되었습니다. 로그인 후 이용해주세요.");
