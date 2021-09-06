@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+
 import Title from "../Title";
+import { shortDateFormat } from "../dateFormat";
 
 function preventDefault(event) {
   event.preventDefault();
@@ -16,14 +20,65 @@ const useStyles = makeStyles({
 
 export default function Deposits() {
   const classes = useStyles();
+
+  const [recentDate, setRecentDate] = useState();
+  const [recentThunderCount, setRecentThunderCount] = useState();
+
+  useEffect(() => {
+    async function fetchThunder() {
+      let createDate;
+      let thunderCount = 0;
+
+      await axios
+        .post("http://api.cumulus.tophat.cloud/thunder", {
+          project_id: "KMsB9W4hZCejJ6D1fiESP",
+        })
+        .then(function (response) {
+          console.log(response);
+          console.log(response.data);
+
+          for (const thunderElement in response.data) {
+            if (thunderElement == 0) {
+              createDate = shortDateFormat(
+                new Date(response.data[thunderElement]["created_at"])
+              );
+
+              thunderCount++;
+            } else {
+              if (
+                createDate ==
+                shortDateFormat(
+                  new Date(response.data[thunderElement]["created_at"])
+                )
+              ) {
+                thunderCount++;
+              }
+            }
+          }
+        })
+        .catch(function (error) {
+          console.log(error.response);
+          alert(`thunder를 불러오는 중 에러가 발생했습니다: ${error}`);
+        })
+        .then(function () {
+          // 항상 실행
+          // setRows(rowsAxios);
+
+          setRecentDate(createDate);
+          setRecentThunderCount(thunderCount);
+        });
+    }
+    fetchThunder();
+  }, []);
+
   return (
     <React.Fragment>
       <Title>Vulnerability Detection</Title>
       <Typography component="p" variant="h4">
-        15{" "}
+        {recentThunderCount}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-        2021-08-18{" "}
+        {recentDate}
       </Typography>
       {/* <Link color="primary" href="/dashboard/detail" onClick={preventDefault}> */}
       {/* <Link color="primary" href="/dashboard/detail">
