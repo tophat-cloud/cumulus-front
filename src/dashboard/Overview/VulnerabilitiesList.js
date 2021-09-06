@@ -10,6 +10,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
 import Title from "../Title";
+import { simpleDateFormat } from "../dateFormat";
 
 // Generate Order Data
 function createData(id, thunder_name, priority, url, created_at, project) {
@@ -21,34 +22,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
 }));
-
-function dateFormat(date) {
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  let hour = date.getHours();
-  let minute = date.getMinutes();
-  let second = date.getSeconds();
-
-  month = month >= 10 ? month : "0" + month;
-  day = day >= 10 ? day : "0" + day;
-  hour = hour >= 10 ? hour : "0" + hour;
-  minute = minute >= 10 ? minute : "0" + minute;
-  second = second >= 10 ? second : "0" + second;
-
-  return (
-    date.getFullYear() +
-    "-" +
-    month +
-    "-" +
-    day +
-    " " +
-    hour +
-    ":" +
-    minute +
-    ":" +
-    second
-  );
-}
 
 let rowsAxios = [];
 
@@ -75,7 +48,7 @@ export default function Orders() {
                 response.data[thunderElement]["thunder_name"],
                 response.data[thunderElement]["priority"],
                 response.data[thunderElement]["url"],
-                dateFormat(
+                simpleDateFormat(
                   new Date(response.data[thunderElement]["created_at"])
                 )
               )

@@ -21,6 +21,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
 import DashboardComponent from "../Dashboard";
+import { simpleDateFormat } from "../dateFormat";
 import { useStyles } from "../useStyles";
 
 const useRowStyles = makeStyles({
@@ -148,7 +149,9 @@ export default function DetailList() {
                 response.data[thunderElement]["thunder_name"],
                 response.data[thunderElement]["priority"],
                 response.data[thunderElement]["url"],
-                response.data[thunderElement]["created_at"]
+                simpleDateFormat(
+                  new Date(response.data[thunderElement]["created_at"])
+                )
               )
             );
           }
