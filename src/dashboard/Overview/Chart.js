@@ -69,7 +69,7 @@ export default function Deposits() {
 
   return (
     <React.Fragment>
-      <Title>weak point statistics</Title>
+      <Title>Thunder Chart</Title>
       <ResponsiveContainer>
         <LineChart
           data={chartData}

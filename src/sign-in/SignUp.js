@@ -54,11 +54,11 @@ export default function SignUp() {
     console.log(`confirm: ${confimValue}`);
 
     if (emailValue === "") {
-      alert("이메일을 입력해주세요");
+      alert("Please enter your email.");
     } else if (!reg_email.test(emailValue)) {
-      alert("이메일 형식을 확인해주세요.");
+      alert("Check your email.");
     } else if (pwValue === "" || confimValue === "") {
-      alert("비밀번호와 비밀번호 확인을 입력해주세요.");
+      alert("Please enter your password and confirm.");
     } else if (pwValue === confimValue) {
       axios
         .post("http://api.cumulus.tophat.cloud/member", {
@@ -67,7 +67,7 @@ export default function SignUp() {
         })
         .then(function (response) {
           // console.log(response);
-          alert("회원가입이 완료되었습니다. 로그인 후 이용해주세요.");
+          alert("Sign-up is completed! Please sign-in to use cumulus.");
           window.location.pathname = "/signin"; // 로그인 페이지로 이동
         })
         .catch(function (error) {
@@ -81,7 +81,7 @@ export default function SignUp() {
         });
     } else {
       alert(
-        "[비밀번호 확인 오류] 비밀번호가 다릅니다. 재입력후 다시 시도해주세요."
+        "[Password verification error] Please input your correct password and try again."
       );
     }
   };

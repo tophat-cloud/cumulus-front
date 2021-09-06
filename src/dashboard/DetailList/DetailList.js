@@ -179,11 +179,11 @@ export default function DetailList() {
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell>순서</TableCell>
+              <TableCell>order</TableCell>
               <TableCell align="left">thunder name</TableCell>
               <TableCell align="center">priority</TableCell>
               <TableCell align="left">url</TableCell>
-              <TableCell align="right">탐지한 날짜</TableCell>
+              <TableCell align="right">detected date</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

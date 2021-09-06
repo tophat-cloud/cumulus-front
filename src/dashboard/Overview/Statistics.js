@@ -73,7 +73,7 @@ export default function Deposits() {
 
   return (
     <React.Fragment>
-      <Title>Vulnerability Detection</Title>
+      <Title>Thunder Detection</Title>
       <Typography component="p" variant="h4">
         {recentThunderCount}
       </Typography>

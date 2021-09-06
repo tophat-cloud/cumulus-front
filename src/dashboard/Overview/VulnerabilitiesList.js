@@ -73,15 +73,15 @@ export default function Orders() {
 
   return (
     <React.Fragment>
-      <Title>Recent Vulnerabilities List</Title>
+      <Title>Recent Thunder</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>순서</TableCell>
+            <TableCell>order</TableCell>
             <TableCell align="left">thunder name</TableCell>
             <TableCell align="center">priority</TableCell>
             <TableCell align="left">url</TableCell>
-            <TableCell align="right">탐지한 날짜</TableCell>
+            <TableCell align="right">detected date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
