@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -6,37 +8,12 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+
 import Title from "../Title";
 
 // Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
-}
-
-const rows = [
-  createData(0, "XSS", "Reflected XSS", 1, "Danger", "..."),
-  createData(
-    1,
-    "CSRF",
-    "게시물을 열람하면 CSRF 스크립트가 실행",
-    2,
-    "Danger",
-    "..."
-  ),
-  createData(2, "XSS", "Reflected XSS", 3, "Danger", "..."),
-  createData(
-    3,
-    "CSRF",
-    "게시물을 열람하면 CSRF 스크립트가 실행",
-    4,
-    "Danger",
-    "..."
-  ),
-  createData(4, "XSS", "Reflected XSS", 5, "Careful", "..."),
-];
-
-function preventDefault(event) {
-  event.preventDefault();
+function createData(id, thunder_name, priority, url, created_at, project) {
+  return { id, thunder_name, priority, url, created_at, project };
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -45,29 +22,73 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let rowsAxios = [];
+
 export default function Orders() {
   const classes = useStyles();
+
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    async function fetchThunder() {
+      await axios
+        .post("http://api.cumulus.tophat.cloud/thunder", {
+          project_id: "KMsB9W4hZCejJ6D1fiESP",
+          limit: 5,
+        })
+        .then(function (response) {
+          console.log(response);
+          console.log(response.data);
+
+          for (const thunderElement in response.data) {
+            rowsAxios.push(
+              createData(
+                thunderElement * 1 + 1,
+                response.data[thunderElement]["thunder_name"],
+                response.data[thunderElement]["priority"],
+                response.data[thunderElement]["url"],
+                response.data[thunderElement]["created_at"]
+              )
+            );
+          }
+        })
+        .catch(function (error) {
+          console.log(error.response);
+          alert(`thunder를 불러오는 중 에러가 발생했습니다: ${error}`);
+        })
+        .then(function () {
+          // 항상 실행
+          setRows(rowsAxios);
+        });
+
+      console.log("rowsAxios: ", rowsAxios);
+    }
+    fetchThunder();
+  }, []);
+
+  console.log("rows: ", rows);
+
   return (
     <React.Fragment>
       <Title>Recent Vulnerabilities List</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Vulnerability</TableCell>
-            <TableCell>Comment</TableCell>
-            <TableCell>Priority</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell align="right">etc</TableCell>
+            <TableCell>순서</TableCell>
+            <TableCell align="left">thunder name</TableCell>
+            <TableCell align="center">priority</TableCell>
+            <TableCell align="left">url</TableCell>
+            <TableCell align="right">탐지한 날짜</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
+              <TableCell>{row.id}</TableCell>
+              <TableCell>{row.thunder_name}</TableCell>
+              <TableCell>{row.priority}</TableCell>
+              <TableCell>{row.url}</TableCell>
+              <TableCell align="right">{row.created_at}</TableCell>
             </TableRow>
           ))}
         </TableBody>
