@@ -31,7 +31,7 @@ export default function Deposits() {
       let tempDate = {};
 
       await axios
-        .post("http://api.cumulus.tophat.cloud/thunder", {
+        .post("https://api.cumulus.tophat.cloud/thunder", {
           project_id: "KMsB9W4hZCejJ6D1fiESP",
         })
         .then(function (response) {

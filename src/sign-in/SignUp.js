@@ -61,7 +61,7 @@ export default function SignUp() {
       alert("Please enter your password and confirm.");
     } else if (pwValue === confimValue) {
       axios
-        .post("http://api.cumulus.tophat.cloud/member", {
+        .post("https://api.cumulus.tophat.cloud/member", {
           email: emailValue,
           password: pwValue,
         })

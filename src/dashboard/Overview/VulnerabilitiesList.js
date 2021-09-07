@@ -33,7 +33,7 @@ export default function Orders() {
   useEffect(() => {
     async function fetchThunder() {
       await axios
-        .post("http://api.cumulus.tophat.cloud/thunder", {
+        .post("https://api.cumulus.tophat.cloud/thunder", {
           project_id: "KMsB9W4hZCejJ6D1fiESP",
           limit: 5,
         })
