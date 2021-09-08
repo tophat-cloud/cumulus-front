@@ -71,15 +71,33 @@ export default function DashboardComponent({ children }) {
             noWrap
             className={classes.title}
           >
-            <div>
-              Cumulus
-              {/* <img
+            <div
+              // style={{
+              //   width: "150px",
+              //   height: "150px",
+              // lineHeight: "50",
+              // textAlign: "center",
+              // }}
+
+              style={{
+                width: "50",
+                height: "50",
+              }}
+            >
+              {/* Cumulus */}
+              <img
                 src={
                   "https://jinui.s3.ap-northeast-2.amazonaws.com/tophat/logo.png"
                 }
                 height="50"
                 alt="Cumulus"
-              /> */}
+                style={{
+                  display: "inline-block",
+                  height: "50",
+                  content: "",
+                  verticalAlign: "middle",
+                }}
+              />
             </div>
           </Typography>
           {/* <IconButton color="inherit">

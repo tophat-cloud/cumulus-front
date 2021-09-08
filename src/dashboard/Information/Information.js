@@ -12,7 +12,7 @@ import { useStyles } from "../useStyles";
 const information1 = `
 # Documents
 
-## Cumulus SDKs for JavaScript
+## Setup
 
 To install a SDK, simply add package like belows\:
 `;

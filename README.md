@@ -13,7 +13,7 @@
 
 A cumulus web service created using a react framework.
 
-You can check vulnerability statistics and analysis through cumulus web service.
+You can check weakness statistics and analysis through cumulus web service.
 
 ## Contents
 

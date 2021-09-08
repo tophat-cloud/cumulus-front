@@ -87,7 +87,7 @@ export default function Deposits() {
               position="left"
               style={{ textAnchor: "middle", fill: theme.palette.text.primary }}
             >
-              Vulnerability
+              Weaknesses
             </Label>
           </YAxis>
           <Line

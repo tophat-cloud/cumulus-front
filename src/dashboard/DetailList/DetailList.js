@@ -41,10 +41,10 @@ function createData(index, thunder_name, priority, url, created_at) {
     created_at,
     detailDataList: [
       {
-        insecureCode: "It shows the code related to vulnerabilities.",
-        comment: "It shows descriptions of vulnerabilities.",
-        suggestion: "It shows recommended solutions to solve vulnerabilities.",
-        rel_link: "It shows references to solve vulnerabilities.",
+        insecureCode: "It shows the code related to weaknesses.",
+        comment: "It shows descriptions of weaknesses.",
+        suggestion: "It shows recommended solutions to solve weaknesses.",
+        rel_link: "It shows references to solve weaknesses.",
       },
       // {
       //   insecureCode: 222,
