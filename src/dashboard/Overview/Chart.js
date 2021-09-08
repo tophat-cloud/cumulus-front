@@ -52,7 +52,7 @@ export default function Deposits() {
           console.log("tempDate: ", tempDate);
 
           for (const date in tempDate) {
-            thunderStatiscics.push(createData(date, tempDate[date]));
+            thunderStatiscics.unshift(createData(date, tempDate[date]));
           }
         })
         .catch(function (error) {
