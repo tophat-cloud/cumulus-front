@@ -85,19 +85,22 @@ export default function DashboardComponent({ children }) {
               }}
             >
               {/* Cumulus */}
-              <img
-                src={
-                  "https://jinui.s3.ap-northeast-2.amazonaws.com/tophat/logo.png"
-                }
-                height="50"
-                alt="Cumulus"
-                style={{
-                  display: "inline-block",
-                  height: "50",
-                  content: "",
-                  verticalAlign: "middle",
-                }}
-              />
+
+              <a href="/">
+                <img
+                  src={
+                    "https://jinui.s3.ap-northeast-2.amazonaws.com/tophat/logo.png"
+                  }
+                  height="50"
+                  alt="Cumulus"
+                  style={{
+                    display: "inline-block",
+                    height: "50",
+                    content: "",
+                    verticalAlign: "middle",
+                  }}
+                />
+              </a>
             </div>
           </Typography>
           {/* <IconButton color="inherit">
