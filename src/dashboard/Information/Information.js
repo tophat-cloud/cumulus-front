@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import ReactMarkdown from "react-markdown";
+import { CopyBlock, dracula } from "react-code-blocks";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -8,30 +9,28 @@ import Paper from "@material-ui/core/Paper";
 import DashboardComponent from "../Dashboard";
 import { useStyles } from "../useStyles";
 
-const informationMarkdown = `
-
+const information1 = `
 # Documents
 
-## SDK 연결 방법
+## Cumulus SDKs for JavaScript
 
 To install a SDK, simply add package like belows\:
+`;
 
-\`\`\`
-npm install --save https://github.com/tophat-cloud/cumulus
+const information2 = `npm install --save https://github.com/tophat-cloud/cumulus
 yarn add https://github.com/tophat-cloud/cumulus
-\`\`\`
+`;
 
-Setup and usage of these SDKs always follows the same principle.
+const information3 = `Setup and usage of these SDKs always follows the same principle.`;
 
-\`\`\`javascript
-import { protect } from 'cumulus';
+const information4 = `import { protect } from 'cumulus';
 
 protect({
-  key: '__key__',
+  key: 'KMsB9W4hZCejJ6D1fiESP',
 });
 
 captureMessage('Hello, world!');
-\`\`\``;
+`;
 
 export default function Information() {
   const classes = useStyles();
@@ -40,7 +39,29 @@ export default function Information() {
 
   return (
     <DashboardComponent>
-      <ReactMarkdown>{informationMarkdown}</ReactMarkdown>
+      <ReactMarkdown>{information1}</ReactMarkdown>
+
+      <CopyBlock
+        language={"bash"}
+        text={information2}
+        showLineNumbers={true}
+        theme={dracula}
+        wrapLines={true}
+        codeBlock
+      />
+
+      <br />
+
+      <ReactMarkdown>{information3}</ReactMarkdown>
+
+      <CopyBlock
+        language={"javascript"}
+        text={information4}
+        showLineNumbers={true}
+        theme={dracula}
+        wrapLines={true}
+        codeBlock
+      />
     </DashboardComponent>
   );
 }
