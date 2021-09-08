@@ -86,15 +86,27 @@ function Row(props) {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
-                Thunder Detail
+                <b>Weakness Detail</b>
               </Typography>
 
               {row.detailDataList.map((detailData) => (
                 <>
-                  <div>insecureCode: {detailData.insecureCode}</div>
-                  <div>comment: {detailData.comment}</div>
-                  <div>suggestion: {detailData.suggestion}</div>
-                  <div>rel_link: {detailData.rel_link}</div>
+                  <div>
+                    <b>insecureCode: </b>
+                    {detailData.insecureCode}
+                  </div>
+                  <div>
+                    <b>comment: </b>
+                    {detailData.comment}
+                  </div>
+                  <div>
+                    <b>suggestion: </b>
+                    {detailData.suggestion}
+                  </div>
+                  <div>
+                    <b>rel_link: </b>
+                    {detailData.rel_link}
+                  </div>
                   <br />
                 </>
               ))}
@@ -158,7 +170,7 @@ export default function DetailList() {
         })
         .catch(function (error) {
           console.log(error.response);
-          alert(`thunder를 불러오는 중 에러가 발생했습니다: ${error}`);
+          alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
         })
         .then(function () {
           // 항상 실행
@@ -180,7 +192,7 @@ export default function DetailList() {
             <TableRow>
               <TableCell />
               <TableCell>order</TableCell>
-              <TableCell align="left">thunder name</TableCell>
+              <TableCell align="left">Weakness name</TableCell>
               <TableCell align="center">priority</TableCell>
               <TableCell align="left">url</TableCell>
               <TableCell align="right">detected date</TableCell>

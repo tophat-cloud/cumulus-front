@@ -57,7 +57,7 @@ export default function Deposits() {
         })
         .catch(function (error) {
           console.log(error.response);
-          alert(`thunder를 불러오는 중 에러가 발생했습니다: ${error}`);
+          alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
         })
         .then(function () {
           // 항상 실행
@@ -69,7 +69,7 @@ export default function Deposits() {
 
   return (
     <React.Fragment>
-      <Title>Thunder Chart</Title>
+      <Title>Weakness Chart</Title>
       <ResponsiveContainer>
         <LineChart
           data={chartData}

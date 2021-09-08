@@ -57,7 +57,7 @@ export default function Orders() {
         })
         .catch(function (error) {
           console.log(error.response);
-          alert(`thunder를 불러오는 중 에러가 발생했습니다: ${error}`);
+          alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
         })
         .then(function () {
           // 항상 실행
@@ -73,7 +73,7 @@ export default function Orders() {
 
   return (
     <React.Fragment>
-      <Title>Recent Thunder</Title>
+      <Title>Recent Weakness</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
