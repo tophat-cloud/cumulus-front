@@ -23,10 +23,7 @@ import Copyright from "../base/Copyright";
 
 const WhiteButton = () => {
   return (
-    <Button
-      variant="outlined"
-      style={{ borderColor: "#e6e2d3", color: "#e6e2d3" }}
-    >
+    <Button variant="outlined" style={{ borderColor: "black", color: "black" }}>
       Logout
     </Button>
   );
@@ -50,7 +47,10 @@ export default function DashboardComponent({ children }) {
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
-        <Toolbar className={classes.toolbar}>
+        <Toolbar
+          className={classes.toolbar}
+          style={{ backgroundColor: "white" }}
+        >
           <IconButton
             edge="start"
             color="inherit"
@@ -61,7 +61,7 @@ export default function DashboardComponent({ children }) {
               open && classes.menuButtonHidden
             )}
           >
-            <MenuIcon />
+            <MenuIcon style={{ borderColor: "black", color: "black" }} />
           </IconButton>
 
           <Typography
