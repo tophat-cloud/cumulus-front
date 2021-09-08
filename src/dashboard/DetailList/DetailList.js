@@ -41,17 +41,17 @@ function createData(index, thunder_name, priority, url, created_at) {
     created_at,
     detailDataList: [
       {
-        insecureCode: 111,
-        comment: "취약점 설명",
-        suggestion: "제안 사항",
-        rel_link: "관련 링크",
+        insecureCode: "It shows the code related to vulnerabilities.",
+        comment: "It shows descriptions of vulnerabilities.",
+        suggestion: "It shows recommended solutions to solve vulnerabilities.",
+        rel_link: "It shows references to solve vulnerabilities.",
       },
-      {
-        insecureCode: 222,
-        comment: "취약점 설명",
-        suggestion: "제안 사항",
-        rel_link: "관련 링크",
-      },
+      // {
+      //   insecureCode: 222,
+      //   comment: "취약점 설명",
+      //   suggestion: "제안 사항",
+      //   rel_link: "관련 링크",
+      // },
     ],
   };
 }
@@ -84,13 +84,19 @@ function Row(props) {
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box margin={1}>
+            <Box
+              margin={1}
+              style={{
+                padding: "10px 0",
+                textAlign: "center",
+              }}
+            >
               <Typography variant="h6" gutterBottom component="div">
-                <b>Weakness Detail</b>
+                Weakness Detail
               </Typography>
 
               {row.detailDataList.map((detailData) => (
-                <>
+                <div>
                   <div>
                     <b>insecureCode: </b>
                     {detailData.insecureCode}
@@ -108,7 +114,7 @@ function Row(props) {
                     {detailData.rel_link}
                   </div>
                   <br />
-                </>
+                </div>
               ))}
             </Box>
           </Collapse>
