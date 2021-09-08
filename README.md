@@ -1,23 +1,34 @@
-# Top Hat - cumulus
+<p align="center">
+  <p align="center">
+    <a href="https://cumulus.tophat.cloud" target="_blank">
+      <img src="https://jinui.s3.ap-northeast-2.amazonaws.com/tophat/logo.png" alt="Cumulus" height="72">
+    </a>
+  </p>
+  <p align="center">
+    Application Weakness Monitoring Software
+  </p>
+</p>
 
-## Available Scripts
+# Cumulus Front-End service
 
-In the project directory, you can run:
+A cumulus web service created using a react framework.
 
-### `yarn start`
+You can check vulnerability statistics and analysis through cumulus web service.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Contents
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Contributing]()
 
-### `yarn build`
+## Author
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="center">
+  <p align="center">
+    <a href="https://github.com/tophat-cloud" target="_blank">
+      <img src="https://jinui.s3.ap-northeast-2.amazonaws.com/tophat/tophat.png" alt="TopHat" height="100">
+    </a>
+  </p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  <p align="center">
+    <a href="https://github.com/wookingwoo" target="_blank">@JeongHeon Woo</a>&nbsp from <strong>TopHat</strong>
+  </p>
+</p>
