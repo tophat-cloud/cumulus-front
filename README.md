@@ -17,11 +17,15 @@ You can check weakness statistics and analysis through cumulus web service.
 
 ## Services
 
-- [Web dashboard](https://cumulus.tophat.cloud)
+- [Web Dashboard](https://cumulus.tophat.cloud)
 
 ## Contents
 
 - [Contributing](https://github.com/tophat-cloud/cumulus-front/blob/master/CONTRIBUTING.md)
+
+## License
+
+- [LICENSE](https://github.com/tophat-cloud/cumulus-front/blob/master/LICENSE)
 
 ## Author
 
