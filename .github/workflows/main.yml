@@ -32,7 +32,7 @@ jobs: # Job 설정
       - name: Build # React Build
         run: CI=false && yarn build
 
-      - name: Deploy
+      - name: Deploy # S3에 배포하기
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -40,4 +40,4 @@ jobs: # Job 설정
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            dist s3://tophat-cumulus-front
+            build s3://tophat-cumulus-front
