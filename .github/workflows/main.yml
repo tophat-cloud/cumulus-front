@@ -18,4 +18,4 @@ jobs: # Job 설정
         run: yarn install --frozen-lockfile
 
       - name: Build # React Build
-        run: yarn build
+        run: CI=false && yarn build
