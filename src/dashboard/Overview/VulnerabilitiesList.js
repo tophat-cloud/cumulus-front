@@ -38,8 +38,8 @@ export default function Orders() {
           limit: 5,
         })
         .then(function (response) {
-          console.log(response);
-          console.log(response.data);
+          // console.log(response);
+          // console.log(response.data);
 
           for (const thunderElement in response.data) {
             rowsAxios.push(
@@ -64,12 +64,12 @@ export default function Orders() {
           setRows(rowsAxios);
         });
 
-      console.log("rowsAxios: ", rowsAxios);
+      // console.log("rowsAxios: ", rowsAxios);
     }
     fetchThunder();
   }, []);
 
-  console.log("rows: ", rows);
+  // console.log("rows: ", rows);
 
   return (
     <React.Fragment>

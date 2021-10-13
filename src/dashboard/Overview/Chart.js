@@ -35,8 +35,8 @@ export default function Deposits() {
           project_id: "KMsB9W4hZCejJ6D1fiESP",
         })
         .then(function (response) {
-          console.log(response);
-          console.log(response.data);
+          // console.log(response);
+          // console.log(response.data);
 
           for (const thunderElement in response.data) {
             const createdAt = chartDateFormat(
@@ -49,7 +49,7 @@ export default function Deposits() {
 
             tempDate[createdAt]++;
           }
-          console.log("tempDate: ", tempDate);
+          // console.log("tempDate: ", tempDate);
 
           for (const date in tempDate) {
             thunderStatiscics.unshift(createData(date, tempDate[date]));

@@ -1,20 +1,20 @@
 import React from "react";
-import clsx from "clsx";
+// import clsx from "clsx";
 import ReactMarkdown from "react-markdown";
 import { CopyBlock, dracula } from "react-code-blocks";
 
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+// import Grid from "@material-ui/core/Grid";
+// import Paper from "@material-ui/core/Paper";
 
 import DashboardComponent from "../Dashboard";
-import { useStyles } from "../useStyles";
+// import { useStyles } from "../useStyles";
 
 const information1 = `
 # Documents
 
 ## Setup
 
-To install a SDK, simply add package like belows\:
+To install a SDK, simply add package like belows:
 `;
 
 const information2 = `npm install --save https://github.com/tophat-cloud/cumulus
@@ -33,9 +33,9 @@ captureMessage('Hello, world!');
 `;
 
 export default function Information() {
-  const classes = useStyles();
+  // const classes = useStyles();
 
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <DashboardComponent>
