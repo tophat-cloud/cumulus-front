@@ -17,7 +17,7 @@ import Button from "@material-ui/core/Button";
 import Badge from "@material-ui/core/Badge";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 
-import { mainListItems, secondaryListItems } from "./listItems";
+import { projectList, mainListItems } from "./listItems";
 import { useStyles } from "./useStyles";
 import Copyright from "../base/Copyright";
 
@@ -132,9 +132,9 @@ export default function DashboardComponent({ children }) {
         </div>
         <Divider />
 
-        <List>{mainListItems}</List>
+        <List>{projectList}</List>
         <Divider />
-        <List>{secondaryListItems}</List>
+        <List>{mainListItems}</List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

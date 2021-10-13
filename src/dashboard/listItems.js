@@ -8,9 +8,20 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import DnsIcon from "@material-ui/icons/Dns";
 import InfoIcon from "@material-ui/icons/Info";
 
+import ProjectSelect from "./selectProject";
+
+export const projectList = (
+  <div>
+    <ListItem>
+      <ProjectSelect />
+    </ListItem>
+  </div>
+);
+
 export const mainListItems = (
   <div>
     {/* <ListSubheader inset>Dashboard</ListSubheader> */}
+
     <ListItem button component="a" href="/dashboard/overview">
       <ListItemIcon>
         <DashboardIcon />
@@ -31,5 +42,3 @@ export const mainListItems = (
     </ListItem>
   </div>
 );
-
-export const secondaryListItems = <div></div>;
