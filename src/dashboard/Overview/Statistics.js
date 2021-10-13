@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import Link from "@material-ui/core/Link";
+// import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
 import Title from "../Title";
 import { shortDateFormat } from "../dateFormat";
 
-function preventDefault(event) {
-  event.preventDefault();
-}
+// function preventDefault(event) {
+//   event.preventDefault();
+// }
 
 const useStyles = makeStyles({
   depositContext: {
@@ -34,11 +34,11 @@ export default function Deposits() {
           project_id: "KMsB9W4hZCejJ6D1fiESP",
         })
         .then(function (response) {
-          console.log(response);
-          console.log(response.data);
+          // console.log(response);
+          // console.log(response.data);
 
           for (const thunderElement in response.data) {
-            if (thunderElement == 0) {
+            if (thunderElement === "0") {
               createDate = shortDateFormat(
                 new Date(response.data[thunderElement]["created_at"])
               );
@@ -46,7 +46,7 @@ export default function Deposits() {
               thunderCount++;
             } else {
               if (
-                createDate ==
+                createDate ===
                 shortDateFormat(
                   new Date(response.data[thunderElement]["created_at"])
                 )

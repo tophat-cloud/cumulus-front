@@ -14,8 +14,8 @@ export default function ProjectSelect() {
 
   const [projectsList, setProjectsList] = useState([]);
   const [selectedProjectId, setSelectedProjectId] = useState("초기값..");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); // eslint-disable-line no-unused-vars
+  const [error, setError] = useState(null); // eslint-disable-line no-unused-vars
 
   useEffect(() => {
     const fetchProjects = async () => {
