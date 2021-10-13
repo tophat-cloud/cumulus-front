@@ -40,9 +40,11 @@ export default function ProjectSelect() {
 
   const handleChange = (event) => {
     if (event.target.value === "AddProject") {
+      var date = new Date(); // 현재 날짜 및 시간
+
       var newProjectName = prompt(
         "Please input the new project name you want to add.",
-        "project1"
+        `project - ${date.toLocaleString().replace(/ /g, "")}`
       );
 
       async function addNewProject() {
@@ -91,7 +93,7 @@ export default function ProjectSelect() {
             <MenuItem value={projects.id}> {projects.title} </MenuItem>
           ))}
 
-          <MenuItem value={"AddProject"}>Add New Project</MenuItem>
+          <MenuItem value={"AddProject"}> + Add New Project</MenuItem>
         </Select>
       </FormControl>
     </Box>
