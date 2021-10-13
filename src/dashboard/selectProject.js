@@ -10,8 +10,6 @@ import Select from "@material-ui/core/Select";
 export default function ProjectSelect() {
   //   const [projectId, setProjectId] = React.useState("");
 
-  //   ddd
-
   const [projectsList, setProjectsList] = useState([]);
   const [selectedProjectId, setSelectedProjectId] = useState("초기값..");
   const [loading, setLoading] = useState(false); // eslint-disable-line no-unused-vars
@@ -40,12 +38,36 @@ export default function ProjectSelect() {
 
   //   console.log(projectsList);
 
-  // ddd
-
   const handleChange = (event) => {
     if (event.target.value === "AddProject") {
-      alert("Add project!");
-      setSelectedProjectId(null);
+      var newProjectName = prompt(
+        "Please input the new project name you want to add.",
+        "project1"
+      );
+
+      async function addNewProject() {
+        await axios
+          .post("https://api.cumulus.tophat.cloud/project", {
+            domain: "no-domain-data",
+            title: newProjectName,
+            member: 8, // 로그인 기능 구현 후 수정
+          })
+          .then(function (response) {
+            console.log(response);
+            console.log(response.data);
+          })
+          .catch(function (error) {
+            console.log(error.response);
+            alert(`프로젝트 추가 에러: ${error}`);
+          })
+          .then(function () {
+            // 항상 실행
+
+            alert(`Successfully added project: ${newProjectName}`);
+            setSelectedProjectId(null);
+          });
+      }
+      addNewProject();
     } else {
       alert(event.target.value);
       setSelectedProjectId(event.target.value);
