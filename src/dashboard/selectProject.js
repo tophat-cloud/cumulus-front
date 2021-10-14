@@ -15,6 +15,8 @@ export default function ProjectSelect() {
   const [loading, setLoading] = useState(false); // eslint-disable-line no-unused-vars
   const [error, setError] = useState(null); // eslint-disable-line no-unused-vars
 
+  const [makeNewProject, setMakeNewProject] = useState(0);
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -34,7 +36,7 @@ export default function ProjectSelect() {
     };
 
     fetchProjects();
-  }, []);
+  }, [makeNewProject]);
 
   //   console.log(projectsList);
 
@@ -55,8 +57,11 @@ export default function ProjectSelect() {
             member: 8, // 로그인 기능 구현 후 수정
           })
           .then(function (response) {
-            console.log(response);
-            console.log(response.data);
+            // console.log(response);
+            // console.log(response.data);
+            setMakeNewProject(makeNewProject + 1);
+            // console.log(makeNewProject);
+            alert(`Successfully added project: ${newProjectName}`);
           })
           .catch(function (error) {
             console.log(error.response);
@@ -64,8 +69,6 @@ export default function ProjectSelect() {
           })
           .then(function () {
             // 항상 실행
-
-            alert(`Successfully added project: ${newProjectName}`);
             setSelectedProjectId(null);
           });
       }
@@ -74,16 +77,6 @@ export default function ProjectSelect() {
       selectedProjectId = event.target.value;
       setSelectedProjectId(event.target.value);
       alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
-
-      // async function changeProject() {
-      //   const selectedId = event.target.value;
-      //   alert(selectedId);
-      //   await new Promise(() => setSelectedProjectId(selectedId));
-
-      //   alert(selectedProjectId);
-      // }
-
-      // changeProject().then(alert(selectedProjectId));
     }
   };
 
