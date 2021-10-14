@@ -91,11 +91,17 @@ export default function ProjectSelect() {
           label="select-prject"
           onChange={handleChange}
         >
+          <MenuItem
+            style={{ backgroundColor: "#d5e1df", fontWeight: "bold" }}
+            value={"AddProject"}
+          >
+            {" "}
+            + Add New Project
+          </MenuItem>
+
           {projectsList.map((projects) => (
             <MenuItem value={projects.id}> {projects.title} </MenuItem>
           ))}
-
-          <MenuItem value={"AddProject"}> + Add New Project</MenuItem>
         </Select>
       </FormControl>
     </Box>
