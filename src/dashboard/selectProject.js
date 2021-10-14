@@ -11,7 +11,7 @@ export default function ProjectSelect() {
   //   const [projectId, setProjectId] = React.useState("");
 
   const [projectsList, setProjectsList] = useState([]);
-  const [selectedProjectId, setSelectedProjectId] = useState("초기값..");
+  let [selectedProjectId, setSelectedProjectId] = useState(null);
   const [loading, setLoading] = useState(false); // eslint-disable-line no-unused-vars
   const [error, setError] = useState(null); // eslint-disable-line no-unused-vars
 
@@ -50,7 +50,7 @@ export default function ProjectSelect() {
       async function addNewProject() {
         await axios
           .post("https://api.cumulus.tophat.cloud/project", {
-            domain: "no-domain-data",
+            domain: "no-domain-data", // back-end에서 null 허용 후 삭제
             title: newProjectName,
             member: 8, // 로그인 기능 구현 후 수정
           })
@@ -71,10 +71,19 @@ export default function ProjectSelect() {
       }
       addNewProject();
     } else {
-      alert(event.target.value);
+      selectedProjectId = event.target.value;
       setSelectedProjectId(event.target.value);
-      console.log(selectedProjectId);
-      alert(selectedProjectId);
+      alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
+
+      // async function changeProject() {
+      //   const selectedId = event.target.value;
+      //   alert(selectedId);
+      //   await new Promise(() => setSelectedProjectId(selectedId));
+
+      //   alert(selectedProjectId);
+      // }
+
+      // changeProject().then(alert(selectedProjectId));
     }
   };
 
@@ -85,7 +94,7 @@ export default function ProjectSelect() {
         <Select
           labelId="select-prject"
           id="select-prject"
-          //   value={selectedProjectId}
+          value={selectedProjectId}
           label="select-prject"
           onChange={handleChange}
         >
