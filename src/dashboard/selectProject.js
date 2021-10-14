@@ -11,9 +11,11 @@ export default function ProjectSelect() {
   //   const [projectId, setProjectId] = React.useState("");
 
   const [projectsList, setProjectsList] = useState([]);
-  const [selectedProjectId, setSelectedProjectId] = useState("초기값..");
+  let [selectedProjectId, setSelectedProjectId] = useState(null);
   const [loading, setLoading] = useState(false); // eslint-disable-line no-unused-vars
   const [error, setError] = useState(null); // eslint-disable-line no-unused-vars
+
+  const [makeNewProject, setMakeNewProject] = useState(0);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -34,7 +36,7 @@ export default function ProjectSelect() {
     };
 
     fetchProjects();
-  }, []);
+  }, [makeNewProject]);
 
   //   console.log(projectsList);
 
@@ -50,13 +52,16 @@ export default function ProjectSelect() {
       async function addNewProject() {
         await axios
           .post("https://api.cumulus.tophat.cloud/project", {
-            domain: "no-domain-data",
+            domain: "no-domain-data", // back-end에서 null 허용 후 삭제
             title: newProjectName,
             member: 8, // 로그인 기능 구현 후 수정
           })
           .then(function (response) {
-            console.log(response);
-            console.log(response.data);
+            // console.log(response);
+            // console.log(response.data);
+            setMakeNewProject(makeNewProject + 1);
+            // console.log(makeNewProject);
+            alert(`Successfully added project: ${newProjectName}`);
           })
           .catch(function (error) {
             console.log(error.response);
@@ -64,17 +69,14 @@ export default function ProjectSelect() {
           })
           .then(function () {
             // 항상 실행
-
-            alert(`Successfully added project: ${newProjectName}`);
             setSelectedProjectId(null);
           });
       }
       addNewProject();
     } else {
-      alert(event.target.value);
+      selectedProjectId = event.target.value;
       setSelectedProjectId(event.target.value);
-      console.log(selectedProjectId);
-      alert(selectedProjectId);
+      alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
     }
   };
 
@@ -85,7 +87,7 @@ export default function ProjectSelect() {
         <Select
           labelId="select-prject"
           id="select-prject"
-          //   value={selectedProjectId}
+          value={selectedProjectId}
           label="select-prject"
           onChange={handleChange}
         >
