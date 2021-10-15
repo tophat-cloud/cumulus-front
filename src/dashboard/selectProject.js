@@ -6,6 +6,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import ControlPointIcon from "@material-ui/icons/ControlPoint";
 
 export default function ProjectSelect() {
   //   const [projectId, setProjectId] = React.useState("");
@@ -95,8 +96,7 @@ export default function ProjectSelect() {
             style={{ backgroundColor: "#d5e1df", fontWeight: "bold" }}
             value={"AddProject"}
           >
-            {" "}
-            + Add New Project
+            <ControlPointIcon style={{ marginRight: "7px" }} /> Add New Project
           </MenuItem>
 
           {projectsList.map((projects) => (
