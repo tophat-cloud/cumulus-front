@@ -30,31 +30,14 @@ export default function Deposits() {
       let thunderCount = 0;
 
       await axios
-        .post("https://api.cumulus.tophat.cloud/thunder", {
+        .post("https://api.cumulus.tophat.cloud/thunder/counts/recent", {
           project_id: "KMsB9W4hZCejJ6D1fiESP",
+          limit: "1",
         })
         .then(function (response) {
           // console.log(response);
           // console.log(response.data);
-
-          for (const thunderElement in response.data) {
-            if (thunderElement === "0") {
-              createDate = shortDateFormat(
-                new Date(response.data[thunderElement]["created_at"])
-              );
-
-              thunderCount++;
-            } else {
-              if (
-                createDate ===
-                shortDateFormat(
-                  new Date(response.data[thunderElement]["created_at"])
-                )
-              ) {
-                thunderCount++;
-              }
-            }
-          }
+          thunderCount = Object.values(response.data);
         })
         .catch(function (error) {
           console.log(error.response);

@@ -28,31 +28,17 @@ export default function Deposits() {
 
   useEffect(() => {
     async function fetchThunder() {
-      let tempDate = {};
-
       await axios
-        .post("https://api.cumulus.tophat.cloud/thunder", {
+        .post("https://api.cumulus.tophat.cloud/thunder/counts/recent", {
           project_id: "KMsB9W4hZCejJ6D1fiESP",
         })
         .then(function (response) {
           // console.log(response);
           // console.log(response.data);
 
-          for (const thunderElement in response.data) {
-            const createdAt = chartDateFormat(
-              new Date(response.data[thunderElement]["created_at"])
-            );
-
-            if (tempDate[createdAt] === undefined) {
-              tempDate[createdAt] = 0;
-            }
-
-            tempDate[createdAt]++;
-          }
-          // console.log("tempDate: ", tempDate);
-
-          for (const date in tempDate) {
-            thunderStatiscics.unshift(createData(date, tempDate[date]));
+          // 역순(날짜오래된순)으로 재정렬
+          for (const date in response.data) {
+            thunderStatiscics.unshift(createData(date, response.data[date]));
           }
         })
         .catch(function (error) {
