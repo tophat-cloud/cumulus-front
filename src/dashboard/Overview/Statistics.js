@@ -38,6 +38,7 @@ export default function Deposits() {
           // console.log(response);
           // console.log(response.data);
           thunderCount = Object.values(response.data);
+          setRecentDate(Object.keys(response.data));
         })
         .catch(function (error) {
           console.log(error.response);
@@ -45,9 +46,6 @@ export default function Deposits() {
         })
         .then(function () {
           // 항상 실행
-          // setRows(rowsAxios);
-
-          setRecentDate(createDate);
           setRecentThunderCount(thunderCount);
         });
     }
