@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
 import Title from "../Title";
-import { shortDateFormat } from "../dateFormat";
+// import { shortDateFormat } from "../dateFormat";
 
 // function preventDefault(event) {
 //   event.preventDefault();
@@ -28,7 +28,7 @@ export default function Deposits() {
     const key = window.localStorage.getItem("key");
 
     async function fetchThunder() {
-      let createDate;
+      // let createDate;
       let thunderCount = 0;
 
       await axios
