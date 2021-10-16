@@ -91,7 +91,7 @@ export default () => {
           <div class="pl-4 flex items-center">
             <a
               class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-              href="#"
+              href="/"
               style={{ display: "inline-block" }}
             >
               {/* <svg
@@ -1215,7 +1215,7 @@ export default () => {
             <div class="flex-1 mb-6 text-black">
               <a
                 class="no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-                href="#"
+                href="/"
               >
                 <img
                   style={{ display: "inline", marginTop: -8, marginRight: 4 }}
@@ -1311,26 +1311,18 @@ export default () => {
               <ul class="list-reset mb-6">
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
-                    href="#"
+                    href="https://status.tophat.cloud"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
-                    Trial
+                    Service Status
                   </a>
                 </li>
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
-                    href="#"
+                    href="https://app.codecov.io/gh/tophat-cloud/cumulus/"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
-                    Team
-                  </a>
-                </li>
-                <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                  <a
-                    href="#"
-                    class="no-underline hover:underline text-gray-800 hover:text-pink-500"
-                  >
-                    Business
+                    Code Status
                   </a>
                 </li>
               </ul>
