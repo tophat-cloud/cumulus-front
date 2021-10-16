@@ -29,6 +29,7 @@ export default function Orders() {
   const classes = useStyles();
 
   const [rows, setRows] = useState([]);
+  const [projectStatus, setProjectStatus] = useState("");
 
   useEffect(() => {
     const key = window.localStorage.getItem("key");
@@ -59,6 +60,15 @@ export default function Orders() {
         .catch(function (error) {
           console.log(error.response);
           alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
+
+          const errorData = error.response.data;
+          alert(errorData);
+
+          if (errorData === "thunder not found") {
+            window.localStorage.setItem("projectStatus", errorData);
+            // alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
+            // window.location.reload();
+          }
         })
         .then(function () {
           // 항상 실행
@@ -85,17 +95,32 @@ export default function Orders() {
             <TableCell align="right">detected date</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.id}</TableCell>
-              <TableCell>{row.thunder_name}</TableCell>
-              <TableCell>{row.priority}</TableCell>
-              <TableCell>{row.url}</TableCell>
-              <TableCell align="right">{row.created_at}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+
+        {
+          // window.localStorage.getItem("projectStatus") !== "정상일경우" &&
+
+          window.localStorage.getItem("projectStatus") ===
+            "thunder not found" && (
+            <TableBody>
+              <span>We couldn't find any weaknesses.</span>
+            </TableBody>
+          )
+        }
+
+        {window.localStorage.getItem("projectStatus") !==
+          "thunder not found" && (
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.id}>
+                <TableCell>{row.id}</TableCell>
+                <TableCell>{row.thunder_name}</TableCell>
+                <TableCell>{row.priority}</TableCell>
+                <TableCell>{row.url}</TableCell>
+                <TableCell align="right">{row.created_at}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        )}
       </Table>
       <div className={classes.seeMore}>
         {/* <Link color="primary" href="/dashboard/detail" onClick={preventDefault}> */}
