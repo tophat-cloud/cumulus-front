@@ -27,10 +27,12 @@ export default function Deposits() {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
+    const key = window.localStorage.getItem("key");
+
     async function fetchThunder() {
       await axios
         .post("https://api.cumulus.tophat.cloud/thunder/counts/recent", {
-          project_id: "KMsB9W4hZCejJ6D1fiESP",
+          project_id: key,
         })
         .then(function (response) {
           // console.log(response);

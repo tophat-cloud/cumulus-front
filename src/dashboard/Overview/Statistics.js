@@ -25,13 +25,15 @@ export default function Deposits() {
   const [recentThunderCount, setRecentThunderCount] = useState();
 
   useEffect(() => {
+    const key = window.localStorage.getItem("key");
+
     async function fetchThunder() {
       let createDate;
       let thunderCount = 0;
 
       await axios
         .post("https://api.cumulus.tophat.cloud/thunder/counts/recent", {
-          project_id: "KMsB9W4hZCejJ6D1fiESP",
+          project_id: key,
           limit: "1",
         })
         .then(function (response) {

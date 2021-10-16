@@ -9,6 +9,8 @@ import { CopyBlock, dracula } from "react-code-blocks";
 import DashboardComponent from "../Dashboard";
 // import { useStyles } from "../useStyles";
 
+const key = window.localStorage.getItem("key");
+
 const information1 = `
 # Documents
 
@@ -25,8 +27,10 @@ const information3 = `Setup and usage of these SDKs always follows the same prin
 
 const information4 = `import { protect } from 'cumulus';
 
+
+
 protect({
-  key: 'KMsB9W4hZCejJ6D1fiESP',
+  key: '${key}',
 });
 
 captureMessage('Hello, world!');

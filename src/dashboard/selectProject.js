@@ -108,7 +108,7 @@ export default function ProjectSelect() {
           </MenuItem>
 
           {projectsList.map((projects) => (
-            <MenuItem value={projects.id}> {projects.id} </MenuItem>
+            <MenuItem value={projects.id}> {projects.title} </MenuItem>
           ))}
         </Select>
       </FormControl>
