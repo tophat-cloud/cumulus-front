@@ -27,8 +27,6 @@ const information3 = `Setup and usage of these SDKs always follows the same prin
 
 const information4 = `import { protect } from 'cumulus';
 
-
-
 protect({
   key: '${key}',
 });
@@ -36,7 +34,7 @@ protect({
 captureMessage('Hello, world!');
 `;
 
-export default function Information() {
+export default function Documents() {
   // const classes = useStyles();
 
   // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
