@@ -8,6 +8,7 @@ import DetailList from "./dashboard/DetailList/DetailList";
 import Documents from "./dashboard/Information/Documents";
 import SignIn from "./sign-in/SignIn";
 import SignUp from "./sign-in/SignUp";
+import Landing from './landing'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/dashboard/documents" component={Documents} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
+      <Route path="/landing" component={Landing} />
     </div>
   );
 }
