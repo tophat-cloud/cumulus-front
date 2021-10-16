@@ -21,7 +21,7 @@ export default function Copyright() {
 
       {/* OpenSourceLicence */}
       <Typography variant="body2" color="textSecondary" align="center">
-        <Link color="inherit" href="/license">
+        <Link color="inherit" href="/license.html">
           {"OpenSourceLicence"}
         </Link>
       </Typography>

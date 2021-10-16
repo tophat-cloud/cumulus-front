@@ -31,10 +31,11 @@ export default function Orders() {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
+    const key = window.localStorage.getItem("key");
     async function fetchThunder() {
       await axios
         .post("https://api.cumulus.tophat.cloud/thunder", {
-          project_id: "KMsB9W4hZCejJ6D1fiESP",
+          project_id: key,
           limit: 5,
         })
         .then(function (response) {

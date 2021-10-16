@@ -17,6 +17,12 @@ export default function ProjectSelect() {
   const [error, setError] = useState(null); // eslint-disable-line no-unused-vars
 
   const [makeNewProject, setMakeNewProject] = useState(0);
+  const [key, setKey] = useState("");
+
+  useEffect(() => {
+    const key = window.localStorage.getItem("key");
+    setKey(key || "");
+  }, []);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -77,7 +83,9 @@ export default function ProjectSelect() {
     } else {
       selectedProjectId = event.target.value;
       setSelectedProjectId(event.target.value);
-      alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
+      window.localStorage.setItem("key", selectedProjectId);
+      // alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
+      window.location.reload();
     }
   };
 
@@ -88,7 +96,7 @@ export default function ProjectSelect() {
         <Select
           labelId="select-prject"
           id="select-prject"
-          value={selectedProjectId}
+          value={key}
           label="select-prject"
           onChange={handleChange}
         >
@@ -100,7 +108,7 @@ export default function ProjectSelect() {
           </MenuItem>
 
           {projectsList.map((projects) => (
-            <MenuItem value={projects.id}> {projects.title} </MenuItem>
+            <MenuItem value={projects.id}> {projects.id} </MenuItem>
           ))}
         </Select>
       </FormControl>
