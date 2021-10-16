@@ -151,10 +151,12 @@ export default function DetailList() {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
+    const key = window.localStorage.getItem("key");
+
     async function fetchThunder() {
       await axios
         .post("https://api.cumulus.tophat.cloud/thunder", {
-          project_id: "KMsB9W4hZCejJ6D1fiESP",
+          project_id: key,
         })
         .then(function (response) {
           console.log(response);

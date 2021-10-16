@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
 import Title from "../Title";
-import { shortDateFormat } from "../dateFormat";
+// import { shortDateFormat } from "../dateFormat";
 
 // function preventDefault(event) {
 //   event.preventDefault();
@@ -25,19 +25,22 @@ export default function Deposits() {
   const [recentThunderCount, setRecentThunderCount] = useState();
 
   useEffect(() => {
+    const key = window.localStorage.getItem("key");
+
     async function fetchThunder() {
-      let createDate;
+      // let createDate;
       let thunderCount = 0;
 
       await axios
         .post("https://api.cumulus.tophat.cloud/thunder/counts/recent", {
-          project_id: "KMsB9W4hZCejJ6D1fiESP",
+          project_id: key,
           limit: "1",
         })
         .then(function (response) {
           // console.log(response);
           // console.log(response.data);
           thunderCount = Object.values(response.data);
+          setRecentDate(Object.keys(response.data));
         })
         .catch(function (error) {
           console.log(error.response);
@@ -45,9 +48,6 @@ export default function Deposits() {
         })
         .then(function () {
           // 항상 실행
-          // setRows(rowsAxios);
-
-          setRecentDate(createDate);
           setRecentThunderCount(thunderCount);
         });
     }
