@@ -32,7 +32,7 @@ export default function Deposits() {
       let thunderCount = 0;
 
       await axios
-        .post("https://api.cumulus.tophat.cloud/thunder/counts/recent", {
+        .post("/thunder/counts/recent", {
           project_id: key,
           limit: "1",
         })
@@ -44,7 +44,7 @@ export default function Deposits() {
         })
         .catch(function (error) {
           console.log(error.response);
-          alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
+          // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
         })
         .then(function () {
           // 항상 실행

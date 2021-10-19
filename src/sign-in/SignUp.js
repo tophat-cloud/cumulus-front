@@ -47,42 +47,34 @@ export default function SignUp() {
   const reg_email =
     /^([0-9a-zA-Z_.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
-  const signUpPost = (e) => {
+  const signUpPost = async (e) => {
     e.preventDefault();
-    console.log(`email: ${emailValue}`);
-    console.log(`pw: ${pwValue}`);
-    console.log(`confirm: ${confimValue}`);
 
     if (emailValue === "") {
       alert("Please enter your email.");
+      return;
     } else if (!reg_email.test(emailValue)) {
       alert("Check your email.");
+      return;
     } else if (pwValue === "" || confimValue === "") {
       alert("Please enter your password and confirm.");
-    } else if (pwValue === confimValue) {
-      axios
-        .post("https://api.cumulus.tophat.cloud/member", {
-          email: emailValue,
-          password: pwValue,
-        })
-        .then(function (response) {
-          // console.log(response);
-          alert("Sign-up is completed! Please sign-in to use cumulus.");
-          window.location.pathname = "/signin"; // 로그인 페이지로 이동
-        })
-        .catch(function (error) {
-          console.log(error.response);
-          alert(error.response["data"]["message"]);
-          // alert(`회원가입 중 에러가 발생했습니다: ${error}`);
-          // console.log(error);
-        })
-        .then(function () {
-          // console.log("항상 실행");
-        });
-    } else {
-      alert(
-        "[Password verification error] Please input your correct password and try again."
-      );
+      return;
+    } else if (pwValue !== confimValue) {
+      alert("Please enter same password on confirm.");
+      return;
+    }
+
+    try {
+      const res = await axios.post("/rest-auth/registration/", {
+        email: emailValue,
+        username: emailValue,
+        password1: pwValue,
+        password2: confimValue,
+      });
+
+      window.location.href = "/signin";
+    } catch (err) {
+      alert(Object.values(err.response.data)[0]);
     }
   };
 

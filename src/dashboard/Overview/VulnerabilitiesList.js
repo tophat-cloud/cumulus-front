@@ -35,7 +35,7 @@ export default function Orders() {
     const key = window.localStorage.getItem("key");
     async function fetchThunder() {
       await axios
-        .post("https://api.cumulus.tophat.cloud/thunder", {
+        .post("/thunder", {
           project_id: key,
           limit: 5,
         })
@@ -59,7 +59,7 @@ export default function Orders() {
         })
         .catch(function (error) {
           console.log(error.response);
-          alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
+          // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
 
           const errorData = error.response.data;
           alert(errorData);

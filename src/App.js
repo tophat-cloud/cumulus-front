@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import axios from 'axios';
 
 // import Hello from "./Hello";
 // import Dashboard from "./dashboard/Dashboard";
@@ -8,7 +9,12 @@ import DetailList from "./dashboard/DetailList/DetailList";
 import Documents from "./dashboard/Information/Documents";
 import SignIn from "./sign-in/SignIn";
 import SignUp from "./sign-in/SignUp";
-import Landing from './landing'
+import Landing from './landing';
+
+axios.defaults.baseURL = 'https://api.cumulus.tophat.cloud';
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') || '';
+axios.defaults.headers.common['Content-Type'] ='application/x-www-form-urlencoded';
+axios.defaults.withCredentials = false;
 
 function App() {
   return (

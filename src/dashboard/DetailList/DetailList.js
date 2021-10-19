@@ -155,7 +155,7 @@ export default function DetailList() {
 
     async function fetchThunder() {
       await axios
-        .post("https://api.cumulus.tophat.cloud/thunder", {
+        .post("/thunder", {
           project_id: key,
         })
         .then(function (response) {
@@ -178,7 +178,7 @@ export default function DetailList() {
         })
         .catch(function (error) {
           console.log(error.response);
-          alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
+          // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
         })
         .then(function () {
           // 항상 실행

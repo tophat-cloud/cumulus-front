@@ -12,8 +12,10 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { useForm } from 'react-hook-form';
 
 import Copyright from "../base/Copyright";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,6 +39,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const { register, handleSubmit } = useForm();
+
+  const onSignIn = async (data) => {
+    const { email, password } = data;
+
+    try {
+      const { data: { key } } = await axios.post('/rest-auth/login/', data);
+      window.localStorage.setItem('token', key);
+
+      axios.defaults.headers.common['Authorization'] = key;
+      window.location.href = '/';
+    } catch (err) {
+      alert(Object.values(err.response.data)[0]);
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,6 +76,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            {...register('email')}
           />
           <TextField
             variant="outlined"
@@ -70,6 +88,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            {...register('password')}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -81,6 +100,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit(onSignIn)}
           >
             Sign In
           </Button>

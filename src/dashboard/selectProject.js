@@ -33,7 +33,7 @@ export default function ProjectSelect() {
         // loading 상태를 true로 설정
         setLoading(true);
         const response = await axios.get(
-          "https://api.cumulus.tophat.cloud/project"
+          "/project"
         );
         setProjectsList(response.data); // 데이터는 response.data 안에 들어있다.
       } catch (e) {
@@ -58,7 +58,7 @@ export default function ProjectSelect() {
 
       async function addNewProject() {
         await axios
-          .post("https://api.cumulus.tophat.cloud/project", {
+          .post("/project", {
             domain: "no-domain-data", // back-end에서 null 허용 후 삭제
             title: newProjectName,
             member: 8, // 로그인 기능 구현 후 수정
