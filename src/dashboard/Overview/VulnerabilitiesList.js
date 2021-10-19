@@ -6,24 +6,18 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-
 import Title from "../Title";
-import { simpleDateFormat } from "../dateFormat";
 import api from "../../utils/api";
 import CleanGuide from "../../components/CleanGuide";
-
-// Generate Order Data
-function createData(id, thunder_name, priority, url, created_at, project) {
-  return { id, thunder_name, priority, url, created_at, project };
-}
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime)
 
 const useStyles = makeStyles((theme) => ({
   seeMore: {
     marginTop: theme.spacing(3),
   },
 }));
-
-let rowsAxios = [];
 
 export default () => {
   const classes = useStyles();
@@ -41,17 +35,7 @@ export default () => {
         limit: 5,
       });
 
-      for (const thunderElement in data) {
-        rowsAxios.push(
-          createData(
-            thunderElement * 1 + 1,
-            data[thunderElement]["thunder_name"],
-            data[thunderElement]["priority"],
-            data[thunderElement]["url"],
-            simpleDateFormat(new Date(data[thunderElement]["created_at"]))
-          )
-        );
-      }
+      setRows(data);
     } catch (err) {
       console.log(err.response);
       // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
@@ -65,8 +49,6 @@ export default () => {
         // window.location.reload();
       }
     }
-
-    setRows(rowsAxios);
   };
 
   useEffect(() => {
@@ -102,9 +84,9 @@ export default () => {
                   <TableRow key={row.id}>
                     <TableCell>{row.id}</TableCell>
                     <TableCell>{row.thunder_name}</TableCell>
-                    <TableCell>{row.priority}</TableCell>
-                    <TableCell>{row.url}</TableCell>
-                    <TableCell align="right">{row.created_at}</TableCell>
+                    <TableCell style={{ color: ['red', 'orange', 'yellow'][row.priority - 1], fontWeight: 'bold' }}>{['HIGH', 'NORMAL', 'LOW'][row.priority - 1]}</TableCell>
+                    <TableCell><Link href={row.url} target="_blank">{row.url}</Link></TableCell>
+                    <TableCell>{dayjs(row.created_at).fromNow()}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

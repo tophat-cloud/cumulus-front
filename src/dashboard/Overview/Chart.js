@@ -51,7 +51,7 @@ export default function Deposits() {
 
   return (
     <React.Fragment>
-      <Title>Weakness Chart</Title>
+      <Title>Weekly Chart</Title>
       <ResponsiveContainer>
         <LineChart
           data={chartData}

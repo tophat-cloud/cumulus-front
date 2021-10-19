@@ -34,6 +34,7 @@ export default () => {
     setNoProject(isNoProject);
 
     if (isNoProject) {
+      setLoading(false);
       return;
     }
 
