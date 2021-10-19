@@ -46,33 +46,35 @@ export default () => {
 
   //   console.log(projectsList);
 
-  const handleChange = async (event) => {
-    if (event.target.value === "AddProject") {
-      var date = new Date(); // 현재 날짜 및 시간
+  const createProject = async () => {
+    const newProjectName = prompt(
+      "Please input the new project name you want to add.",
+      '',
+    );
 
-      var newProjectName = prompt(
-        "Please input the new project name you want to add.",
-        `project - ${date.toLocaleString().replace(/ /g, "")}`
-      );
-
-      try {
-        const data = await api.createProject({
-          domain: '',
-          title: newProjectName,
-          // member: 8,
-        });
-  
-        setMakeNewProject(makeNewProject + 1);
-        alert(`Successfully added project: ${newProjectName}`);
-      } catch (err) {
-        console.log(error.response);
-        alert(`프로젝트 추가 에러: ${error}`);
-      }
-
-      setSelectedProjectId(null);
+    if (!newProjectName) {
       return;
     }
 
+    try {
+      const { id } = await api.createProject({
+        title: newProjectName,
+        // member: 8,
+      });
+
+      setMakeNewProject(makeNewProject + 1);
+      window.localStorage.setItem("key", id);
+      window.location.reload();
+    } catch (err) {
+      console.log(error.response);
+      alert(`Oops..! failed add project, try again.`);
+    }
+
+    setSelectedProjectId(null);
+    return;
+  }
+
+  const handleChange = async (event) => {
     selectedProjectId = event.target.value;
     setSelectedProjectId(event.target.value);
     window.localStorage.setItem("key", selectedProjectId);
@@ -92,6 +94,9 @@ export default () => {
         <MenuItem
           style={{ backgroundColor: "#d5e1df", fontWeight: "bold" }}
           value='add'
+          onClick={() => {
+            createProject();
+          }}
         >
           <ControlPointIcon style={{ marginRight: "7px" }} />
           Project
