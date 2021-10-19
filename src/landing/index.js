@@ -4,6 +4,10 @@ import "./style.css";
 import icon from "../assets/icons/logo.png";
 
 export default () => {
+  const onCommingSoon = () => {
+    alert('comming soon!');
+  }
+
   useEffect(() => {
     var scrollpos = window.scrollY;
     var header = document.getElementById("header");
@@ -170,6 +174,7 @@ export default () => {
             <button
               id="navAction"
               class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+              onClick={() => window.location.href = '/signup'}
             >
               GET STARTED
             </button>
@@ -189,7 +194,11 @@ export default () => {
               weakness in realtime. The issues will be reported on web
               dashboard. It's very simple and powerful.
             </p>
-            <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            <button
+              class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+              style={{ zIndex: 10 }}
+              onClick={() => window.location.href = '/signup'}
+            >
               Try Cumulus
             </button>
           </div>
@@ -1108,7 +1117,10 @@ export default () => {
                   <span class="text-base">/mo</span>
                 </div>
                 <div class="flex items-center justify-center">
-                  <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                  <button
+                    class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                    onClick={onCommingSoon}
+                  >
                     GET STARTED
                   </button>
                 </div>
@@ -1130,7 +1142,10 @@ export default () => {
                   <span class="text-base">/mo</span>
                 </div>
                 <div class="flex items-center justify-center">
-                  <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                  <button
+                    class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                    onClick={onCommingSoon}
+                  >
                     START TRIAL
                   </button>
                 </div>
@@ -1156,7 +1171,10 @@ export default () => {
                   <span class="text-base">/mo</span>
                 </div>
                 <div class="flex items-center justify-center">
-                  <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                  <button 
+                    class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                    onClick={onCommingSoon}
+                  >
                     START TRIAL
                   </button>
                 </div>
