@@ -16,15 +16,6 @@ import ProjectSelect from "./ProjectSelector";
 import Logo from './Logo';
 
 
-
-const projectList = (
-  <div>
-    <ListItem>
-      <ProjectSelect />
-    </ListItem>
-  </div>
-);
-
 const mainListItems = (
   <div>
     <ListItem button component="a" href="/">

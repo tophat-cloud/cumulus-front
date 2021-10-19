@@ -8,11 +8,11 @@ import Container from "@material-ui/core/Container";
 const Layout = styled.div`
   display: flex;
   min-height: 100vh;
-  background-color: whitesmoke;
+  background-color: #fcfcfc;
 `;
 
 const Main = styled(Container)`
-  min-height: calc(100vh - 100px - 64px);
+  min-height: calc(100vh - 64px - 64px);
   width: 100%;
   padding: 16px;
 `;

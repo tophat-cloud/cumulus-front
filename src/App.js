@@ -45,8 +45,6 @@ export default () => {
   return (
     <>
       <RouteWithLayout path="/" component={Overview} />
-      <RouteWithLayout path="/dashboard" component={Overview} />
-      <RouteWithLayout path="/dashboard/overview" component={Overview} />
       <RouteWithLayout path="/dashboard/detail" component={DetailList} />
       <RouteWithLayout path="/dashboard/documents" component={Documents} />
     </>

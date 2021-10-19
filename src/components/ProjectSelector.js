@@ -81,7 +81,7 @@ export default () => {
   };
 
   return (
-    <Box sx={{ width: 120, height: '100%' }}>
+    <Box sx={{ height: '100%' }}>
       <Select
         labelId="select-prject"
         id="select-prject"
