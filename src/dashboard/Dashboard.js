@@ -95,7 +95,7 @@ export default function DashboardComponent({ children }) {
                   alt="Cumulus"
                   style={{
                     display: "inline-block",
-                    height: "50",
+                    height: 50,
                     content: "",
                     verticalAlign: "middle",
                   }}
