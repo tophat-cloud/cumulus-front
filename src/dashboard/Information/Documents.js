@@ -8,7 +8,7 @@ const key = window.localStorage.getItem("key");
 const installCode = `
 npm install --save https://github.com/tophat-cloud/cumulus
 yarn add https://github.com/tophat-cloud/cumulus
-`
+`.trim();
 
 const runCode = `
 import { protect } from 'cumulus';
