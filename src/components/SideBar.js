@@ -12,7 +12,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import clsx from "clsx";
 import React from "react";
 import { useStyles } from "../utils/useStyles";
-import ProjectSelect from "./selectProject";
+import ProjectSelect from "./ProjectSelector";
 import Logo from './Logo';
 
 

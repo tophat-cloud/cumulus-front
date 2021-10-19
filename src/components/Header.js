@@ -1,22 +1,10 @@
-import React from "react";
 import AppBar from "@material-ui/core/AppBar";
-import IconButton from "@material-ui/core/IconButton";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import MenuIcon from "@material-ui/icons/Menu";
 import clsx from "clsx";
+import React from "react";
 import LogoutButton from '../components/LogoutButton';
 import { useStyles } from "../utils/useStyles";
-import ProjectSelect from "./selectProject";
-import ListItem from "@material-ui/core/ListItem";
-
-const projectList = (
-  <div style={{ width: 100 }}>
-    <ListItem>
-      <ProjectSelect />
-    </ListItem>
-  </div>
-);
+import ProjectSelect from "./ProjectSelector";
 
 export default ({
   open,
