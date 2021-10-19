@@ -19,14 +19,18 @@ axios.defaults.withCredentials = false;
 function App() {
   return (
     <div>
-      <Route path="/" component={OverviewComponent} exact />
+      {
+        Boolean(localStorage.getItem('token')) ?
+          <Route path="/" component={OverviewComponent} exact />
+        :
+          <Route path="/" component={Landing} exact />
+      }
       <Route path="/dashboard" component={OverviewComponent} exact />
       <Route path="/dashboard/overview" component={OverviewComponent} />
       <Route path="/dashboard/detail" component={DetailList} />
       <Route path="/dashboard/documents" component={Documents} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/landing" component={Landing} />
     </div>
   );
 }

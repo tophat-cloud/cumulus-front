@@ -22,8 +22,17 @@ import { useStyles } from "./useStyles";
 import Copyright from "../base/Copyright";
 
 const WhiteButton = () => {
+  const onClick = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/';
+  };
+
   return (
-    <Button variant="outlined" style={{ borderColor: "black", color: "black" }}>
+    <Button
+      variant="outlined"
+      style={{ borderColor: "black", color: "black" }}
+      onClick={onClick}
+    >
       Logout
     </Button>
   );
@@ -108,9 +117,8 @@ export default function DashboardComponent({ children }) {
               <NotificationsIcon />
             </Badge>
           </IconButton> */}
-          <Link href="/signin" variant="body2">
-            <WhiteButton></WhiteButton>
-          </Link>
+
+          <WhiteButton/>
         </Toolbar>
       </AppBar>
 
