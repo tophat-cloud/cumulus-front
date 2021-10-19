@@ -21,12 +21,12 @@ export default () => {
     <Footer>
       {/* Copyright */}
       <Typography variant="body1" color="textSecondary" align="center">
-        <Link color="inherit" target="_blank" href="/license.html">
+        <Link color="inherit" target="_blank" href="/terms.html">
           Terms
         </Link>
         
-        <Link color="inherit" target="_blank" href="/license.html" style={{ marginLeft: 16 }}>
-          Policy
+        <Link color="inherit" target="_blank" href="/privacy.html" style={{ marginLeft: 16 }}>
+          Privacy
         </Link>
       </Typography>
 
