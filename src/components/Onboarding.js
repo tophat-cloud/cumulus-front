@@ -20,6 +20,7 @@ const NoticeTitle = styled.strong`
   margin-top: 18px;
   width: 100%;
   text-align: center;
+  font-size: 22px;
 `;
 
 const NoticeText = styled.span`
@@ -27,6 +28,7 @@ const NoticeText = styled.span`
   width: 100%;
   text-align: center;
   margin-bottom: 24px;
+  font-size: 16px;
 `;
 
 const StartButton = styled(Button)`

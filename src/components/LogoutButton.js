@@ -7,7 +7,7 @@ const LogoutButton = styled(Button)`
 
 export default () => {
   const onClick = () => {
-    localStorage.removeItem('token');
+    localStorage.clear();
     window.location.href = '/';
   };
 

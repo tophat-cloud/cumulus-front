@@ -11,11 +11,13 @@ import Chart from "./Chart";
 import VulnerabilityDetection from "./Statistics";
 import RecentVulnerabilities from "./VulnerabilitiesList";
 import Onboarding from "../../components/Onboarding";
+import InstallGuide from "../../components/InstallGuide";
 
 export default () => {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const [isNoProject, setNoProject] = useState(false);
+  const [isNoDomain, setNoDomain] = useState(false);
   
   useEffect(() => {
     checkNoProject();
@@ -23,11 +25,30 @@ export default () => {
 
   const checkNoProject = async () => {
     const projectList = await api.getProjectList();
-    setNoProject(projectList.length < 1);
+    const isNoProject = projectList.length < 1;
+    setNoProject(isNoProject);
+
+    if (isNoProject) {
+      return;
+    }
+
+    const key = window.localStorage.getItem("key");
+    if (!key) {
+      window.localStorage.setItem('key', projectList[0].id);
+      window.location.reload();
+      return;
+    }
+
+    const project = projectList.find(v => v.id === key);
+    setNoDomain(!Boolean(project && project.domain));
   }
 
   if (isNoProject) {
     return <Onboarding/>;
+  }
+
+  if (isNoDomain) {
+    return <InstallGuide/>;
   }
 
   return (
