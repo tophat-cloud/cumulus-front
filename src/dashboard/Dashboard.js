@@ -14,29 +14,12 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
-// import Badge from "@material-ui/core/Badge";
-// import NotificationsIcon from "@material-ui/icons/Notifications";
-
 import { projectList, mainListItems } from "./listItems";
 import { useStyles } from "./useStyles";
 import Copyright from "../base/Copyright";
+import LogoutButton from '../components/LogoutButton';
 
-const WhiteButton = () => {
-  const onClick = () => {
-    localStorage.removeItem('token');
-    window.location.href = '/';
-  };
 
-  return (
-    <Button
-      variant="outlined"
-      style={{ borderColor: "black", color: "black" }}
-      onClick={onClick}
-    >
-      Logout
-    </Button>
-  );
-};
 
 export default function DashboardComponent({ children }) {
   const classes = useStyles();
@@ -118,7 +101,7 @@ export default function DashboardComponent({ children }) {
             </Badge>
           </IconButton> */}
 
-          <WhiteButton/>
+          <LogoutButton/>
         </Toolbar>
       </AppBar>
 
