@@ -17,6 +17,8 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItem from "@material-ui/core/ListItem";
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime)
@@ -61,32 +63,33 @@ const Row = (props) => {
               margin={1}
               style={{
                 padding: "10px 0",
-                textAlign: "center",
+                textAlign: "left",
               }}
             >
               <Typography variant="h6" gutterBottom component="div">
-                Weakness Detail
+                <strong>Issue</strong> {row.thunder_name}
               </Typography>
 
-              <div> 
-                <div>
-                  <b>insecureCode: </b>
-                  {'detailData.insecureCode'}
-                </div>
-                <div>
-                  <b>comment: </b>
-                  {'detailData.comment'}
-                </div>
-                <div>
-                  <b>suggestion: </b>
-                  {'detailData.suggestion'}
-                </div>
-                <div>
-                  <b>rel_link: </b>
-                  {'detailData.rel_link'}
-                </div>
+              <ul> 
+                <ListItem>
+                  <strong style={{ marginRight: 8 }}>weakness → </strong>
+                  <ListItemText primary={'detailData.insecureCode'}/>
+                </ListItem>
+                <ListItem>
+                  <strong style={{ marginRight: 8 }}>description → </strong>
+                  <ListItemText primary={'detailData.comment'}/>
+                </ListItem>
+
+                <ListItem>
+                  <strong style={{ marginRight: 8 }}>suggestion → </strong>
+                  <ListItemText primary={'detailData.suggestion'}/>
+                </ListItem>
+                <ListItem>
+                  <strong style={{ marginRight: 8 }}>reference → </strong>
+                  <ListItemText primary={'detailData.rel_link'}/>
+                </ListItem>
                 <br />
-              </div>
+              </ul>
             </Box>
           </Collapse>
         </TableCell>
