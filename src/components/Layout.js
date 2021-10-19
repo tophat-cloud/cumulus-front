@@ -8,6 +8,7 @@ import Container from "@material-ui/core/Container";
 const Layout = styled.div`
   display: flex;
   min-height: 100vh;
+  background-color: whitesmoke;
 `;
 
 const Main = styled(Container)`

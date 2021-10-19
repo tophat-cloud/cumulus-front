@@ -81,28 +81,32 @@ export default () => {
   };
 
   return (
-    <Box sx={{ minWidth: 120, width: "100%" }}>
-      <FormControl fullWidth>
-        <InputLabel id="select-prject">Select Project</InputLabel>
-        <Select
-          labelId="select-prject"
-          id="select-prject"
-          value={key}
-          label="select-prject"
-          onChange={handleChange}
+    <Box sx={{ width: 120, height: '100%' }}>
+      <Select
+        labelId="select-prject"
+        id="select-prject"
+        value={key || 'add'}
+        label="select-prject"
+        onChange={handleChange}
+      >
+        <MenuItem
+          style={{ backgroundColor: "#d5e1df", fontWeight: "bold" }}
+          value='add'
         >
-          <MenuItem
-            style={{ backgroundColor: "#d5e1df", fontWeight: "bold" }}
-            value={"AddProject"}
-          >
-            <ControlPointIcon style={{ marginRight: "7px" }} /> Add New Project
-          </MenuItem>
+          <ControlPointIcon style={{ marginRight: "7px" }} />
+          Project
+        </MenuItem>
 
-          {projectsList.map((projects) => (
-            <MenuItem value={projects.id}> {projects.title} </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+        {
+          projectsList.map((projects) => (
+            <MenuItem
+              value={projects.id}
+            >
+              {projects.title}
+            </MenuItem>
+          ))
+        }
+      </Select>
     </Box>
   );
 }

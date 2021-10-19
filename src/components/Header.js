@@ -28,48 +28,19 @@ export default ({
     <AppBar
       position="absolute"
       className={clsx(classes.appBar, open && classes.appBarShift)}
+      style={{
+        boxShadow: 'none',
+        borderBottom: '1px solid lightgray',
+      }}
     >
-      <Toolbar className={classes.toolbar} style={{ backgroundColor: "white" }}>
-        {/* <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerOpen}
-          className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-        >
-          <MenuIcon style={{ borderColor: "black", color: "black" }} />
-        </IconButton> */}
-
-        <Typography
-          component="h1"
-          variant="h6"
-          color="inherit"
-          noWrap
-          className={classes.title}
-        >
-          <div
-            // style={{
-            //   width: "150px",
-            //   height: "150px",
-            // lineHeight: "50",
-            // textAlign: "center",
-            // }}
-
-            style={{
-              width: "50",
-              height: "50",
-            }}
-          >
-            {/* Cumulus */}
-
-            {projectList}
-          </div>
-        </Typography>
-        {/* <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton> */}
+      <Toolbar
+        className={classes.toolbar}
+        style={{
+          backgroundColor: "white",
+          justifyContent: 'space-between',
+        }}
+      >
+        <ProjectSelect/>
 
         <LogoutButton />
       </Toolbar>
