@@ -22,13 +22,13 @@ const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Overview" />
+      <ListItemText primary="Dashboard" />
     </ListItem>
     <ListItem button component="a" href="/dashboard/detail">
       <ListItemIcon>
         <DnsIcon />
       </ListItemIcon>
-      <ListItemText primary="Detail list" />
+      <ListItemText primary="Timeline" />
     </ListItem>
     <ListItem button component="a" href="/dashboard/documents">
       <ListItemIcon>
