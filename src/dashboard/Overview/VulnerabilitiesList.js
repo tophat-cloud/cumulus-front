@@ -90,11 +90,11 @@ export default () => {
           <>
             <TableHead>
               <TableRow>
-                <TableCell>order</TableCell>
-                <TableCell align="left">thunder name</TableCell>
-                <TableCell align="center">priority</TableCell>
-                <TableCell align="left">url</TableCell>
-                <TableCell align="right">detected date</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }} align="left">No</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }} align="left">Issue</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }} align="left">Level</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }} align="left">URL</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }} align="left">Time</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

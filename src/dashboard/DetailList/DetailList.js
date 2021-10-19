@@ -75,9 +75,9 @@ function Row(props) {
           {row.index}
         </TableCell>
         <TableCell align="left">{row.thunder_name}</TableCell>
-        <TableCell align="center">{row.priority}</TableCell>
+        <TableCell align="left">{row.priority}</TableCell>
         <TableCell align="left">{row.url}</TableCell>
-        <TableCell align="right">{row.created_at}</TableCell>
+        <TableCell align="left">{row.created_at}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -187,11 +187,11 @@ export default function DetailList() {
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell>order</TableCell>
-              <TableCell align="left">Weakness name</TableCell>
-              <TableCell align="center">priority</TableCell>
-              <TableCell align="left">url</TableCell>
-              <TableCell align="right">detected date</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }}>No</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }} align="left">Issue</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }} align="left">Level</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }} align="left">URL</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }} align="left">Time</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
