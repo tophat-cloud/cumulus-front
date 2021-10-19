@@ -10,6 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Title from "../Title";
 import { simpleDateFormat } from "../dateFormat";
 import api from "../../utils/api";
+import CleanGuide from "../../components/CleanGuide";
 
 // Generate Order Data
 function createData(id, thunder_name, priority, url, created_at, project) {
@@ -24,11 +25,12 @@ const useStyles = makeStyles((theme) => ({
 
 let rowsAxios = [];
 
-export default function Orders() {
+export default () => {
   const classes = useStyles();
 
   const [rows, setRows] = useState([]);
   const [projectStatus, setProjectStatus] = useState("");
+  const isEmptyWeakness = projectStatus === "thunder not found";
 
   const load = async () => {
     const key = window.localStorage.getItem("key");
@@ -57,7 +59,8 @@ export default function Orders() {
       const errorData = err.response.data;
 
       if (errorData === "thunder not found") {
-        window.localStorage.setItem("projectStatus", errorData);
+        setProjectStatus(errorData);
+        // window.localStorage.setItem("projectStatus", errorData);
         // alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
         // window.location.reload();
       }
@@ -74,48 +77,49 @@ export default function Orders() {
     <React.Fragment>
       <Title>Recent Weakness</Title>
       <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>order</TableCell>
-            <TableCell align="left">thunder name</TableCell>
-            <TableCell align="center">priority</TableCell>
-            <TableCell align="left">url</TableCell>
-            <TableCell align="right">detected date</TableCell>
-          </TableRow>
-        </TableHead>
-
         {
-          // window.localStorage.getItem("projectStatus") !== "정상일경우" &&
-
-          window.localStorage.getItem("projectStatus") ===
-            "thunder not found" && (
-            <TableBody>
-              <span>We couldn't find any weaknesses.</span>
-            </TableBody>
-          )
+          isEmptyWeakness &&
+          <CleanGuide/>
+          // <TableBody>
+          //     <span>We couldn't find any weaknesses.</span>
+          //   </TableBody>
         }
 
-        {window.localStorage.getItem("projectStatus") !==
-          "thunder not found" && (
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.id}</TableCell>
-                <TableCell>{row.thunder_name}</TableCell>
-                <TableCell>{row.priority}</TableCell>
-                <TableCell>{row.url}</TableCell>
-                <TableCell align="right">{row.created_at}</TableCell>
+        {
+          isEmptyWeakness ||
+          <>
+            <TableHead>
+              <TableRow>
+                <TableCell>order</TableCell>
+                <TableCell align="left">thunder name</TableCell>
+                <TableCell align="center">priority</TableCell>
+                <TableCell align="left">url</TableCell>
+                <TableCell align="right">detected date</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        )}
+            </TableHead>
+            <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell>{row.id}</TableCell>
+                    <TableCell>{row.thunder_name}</TableCell>
+                    <TableCell>{row.priority}</TableCell>
+                    <TableCell>{row.url}</TableCell>
+                    <TableCell align="right">{row.created_at}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+        }
       </Table>
-      <div className={classes.seeMore}>
-        {/* <Link color="primary" href="/dashboard/detail" onClick={preventDefault}> */}
-        <Link color="primary" href="/dashboard/detail">
-          View details
-        </Link>
-      </div>
+
+      {
+        isEmptyWeakness ||
+          <div className={classes.seeMore}>
+            <Link color="primary" href="/dashboard/detail">
+              View details
+            </Link>
+          </div>
+      }
     </React.Fragment>
   );
 }
