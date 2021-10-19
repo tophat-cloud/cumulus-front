@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import clsx from "clsx";
-import axios from "axios";
+import api from '../../utils/api';
 
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,7 +19,6 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 // import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
-import DashboardComponent from "../Dashboard";
 import { simpleDateFormat } from "../dateFormat";
 // import { useStyles } from "../useStyles";
 
@@ -77,9 +75,9 @@ function Row(props) {
           {row.index}
         </TableCell>
         <TableCell align="left">{row.thunder_name}</TableCell>
-        <TableCell align="center">{row.priority}</TableCell>
+        <TableCell align="left">{row.priority}</TableCell>
         <TableCell align="left">{row.url}</TableCell>
-        <TableCell align="right">{row.created_at}</TableCell>
+        <TableCell align="left">{row.created_at}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -150,69 +148,60 @@ export default function DetailList() {
 
   const [rows, setRows] = useState([]);
 
-  useEffect(() => {
+  const load = async () => {
     const key = window.localStorage.getItem("key");
 
-    async function fetchThunder() {
-      await axios
-        .post("https://api.cumulus.tophat.cloud/thunder", {
-          project_id: key,
-        })
-        .then(function (response) {
-          console.log(response);
-          console.log(response.data);
-
-          for (const thunderElement in response.data) {
-            rowsAxios.push(
-              createData(
-                thunderElement * 1 + 1,
-                response.data[thunderElement]["thunder_name"],
-                response.data[thunderElement]["priority"],
-                response.data[thunderElement]["url"],
-                simpleDateFormat(
-                  new Date(response.data[thunderElement]["created_at"])
-                )
-              )
-            );
-          }
-        })
-        .catch(function (error) {
-          console.log(error.response);
-          alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
-        })
-        .then(function () {
-          // 항상 실행
-          setRows(rowsAxios);
-        });
-
-      console.log("rowsAxios: ", rowsAxios);
+    try {
+      const data = await api.getThunderList({
+        project_id: key,
+      });
+  
+      for (const thunderElement in data) {
+        rowsAxios.push(
+          createData(
+            thunderElement * 1 + 1,
+            data[thunderElement]["thunder_name"],
+            data[thunderElement]["priority"],
+            data[thunderElement]["url"],
+            simpleDateFormat(
+              new Date(data[thunderElement]["created_at"])
+            )
+          )
+        );
+      }
+    } catch (err) {
+      console.log(err.response);
+      // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
     }
-    fetchThunder();
+
+    setRows(rowsAxios);
+  }
+
+  useEffect(() => {
+    load();
   }, []);
 
-  console.log("rows: ", rows);
-
   return (
-    <DashboardComponent>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell>order</TableCell>
-              <TableCell align="left">Weakness name</TableCell>
-              <TableCell align="center">priority</TableCell>
-              <TableCell align="left">url</TableCell>
-              <TableCell align="right">detected date</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }}>No</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }} align="left">Issue</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }} align="left">Level</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }} align="left">URL</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }} align="left">Time</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <Row key={row.index} row={row} />
-            ))}
+            {
+              rows.map((row) => (
+                <Row key={row.index} row={row} />
+              ))
+            }
           </TableBody>
         </Table>
       </TableContainer>
-    </DashboardComponent>
   );
 }

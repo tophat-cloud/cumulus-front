@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -11,6 +9,8 @@ import TableRow from "@material-ui/core/TableRow";
 
 import Title from "../Title";
 import { simpleDateFormat } from "../dateFormat";
+import api from "../../utils/api";
+import CleanGuide from "../../components/CleanGuide";
 
 // Generate Order Data
 function createData(id, thunder_name, priority, url, created_at, project) {
@@ -25,84 +25,101 @@ const useStyles = makeStyles((theme) => ({
 
 let rowsAxios = [];
 
-export default function Orders() {
+export default () => {
   const classes = useStyles();
 
   const [rows, setRows] = useState([]);
+  const [projectStatus, setProjectStatus] = useState("");
+  const isEmptyWeakness = projectStatus === "thunder not found";
+
+  const load = async () => {
+    const key = window.localStorage.getItem("key");
+
+    try {
+      const data = await api.getThunderDetail({
+        project_id: key,
+        limit: 5,
+      });
+
+      for (const thunderElement in data) {
+        rowsAxios.push(
+          createData(
+            thunderElement * 1 + 1,
+            data[thunderElement]["thunder_name"],
+            data[thunderElement]["priority"],
+            data[thunderElement]["url"],
+            simpleDateFormat(new Date(data[thunderElement]["created_at"]))
+          )
+        );
+      }
+    } catch (err) {
+      console.log(err.response);
+      // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
+
+      const errorData = err.response.data;
+
+      if (errorData === "thunder not found") {
+        setProjectStatus(errorData);
+        // window.localStorage.setItem("projectStatus", errorData);
+        // alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
+        // window.location.reload();
+      }
+    }
+
+    setRows(rowsAxios);
+  };
 
   useEffect(() => {
-    const key = window.localStorage.getItem("key");
-    async function fetchThunder() {
-      await axios
-        .post("https://api.cumulus.tophat.cloud/thunder", {
-          project_id: key,
-          limit: 5,
-        })
-        .then(function (response) {
-          // console.log(response);
-          // console.log(response.data);
-
-          for (const thunderElement in response.data) {
-            rowsAxios.push(
-              createData(
-                thunderElement * 1 + 1,
-                response.data[thunderElement]["thunder_name"],
-                response.data[thunderElement]["priority"],
-                response.data[thunderElement]["url"],
-                simpleDateFormat(
-                  new Date(response.data[thunderElement]["created_at"])
-                )
-              )
-            );
-          }
-        })
-        .catch(function (error) {
-          console.log(error.response);
-          alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
-        })
-        .then(function () {
-          // 항상 실행
-          setRows(rowsAxios);
-        });
-
-      // console.log("rowsAxios: ", rowsAxios);
-    }
-    fetchThunder();
+    load();
   }, []);
-
-  // console.log("rows: ", rows);
 
   return (
     <React.Fragment>
       <Title>Recent Weakness</Title>
       <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>order</TableCell>
-            <TableCell align="left">thunder name</TableCell>
-            <TableCell align="center">priority</TableCell>
-            <TableCell align="left">url</TableCell>
-            <TableCell align="right">detected date</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.id}</TableCell>
-              <TableCell>{row.thunder_name}</TableCell>
-              <TableCell>{row.priority}</TableCell>
-              <TableCell>{row.url}</TableCell>
-              <TableCell align="right">{row.created_at}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+        {
+          isEmptyWeakness &&
+          <CleanGuide/>
+          // <TableBody>
+          //     <span>We couldn't find any weaknesses.</span>
+          //   </TableBody>
+        }
+
+        {
+          isEmptyWeakness ||
+          <>
+            <TableHead>
+              <TableRow>
+                <TableCell style={{ fontWeight: 'bold' }} align="left">No</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }} align="left">Issue</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }} align="left">Level</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }} align="left">URL</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }} align="left">Time</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell>{row.id}</TableCell>
+                    <TableCell>{row.thunder_name}</TableCell>
+                    <TableCell>{row.priority}</TableCell>
+                    <TableCell>{row.url}</TableCell>
+                    <TableCell align="right">{row.created_at}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </>
+        }
       </Table>
-      <div className={classes.seeMore}>
-        {/* <Link color="primary" href="/dashboard/detail" onClick={preventDefault}> */}
-        <Link color="primary" href="/dashboard/detail">
-          View details
-        </Link>
-      </div>
+
+      {
+        isEmptyWeakness ||
+          <div className={classes.seeMore}>
+            <Link color="primary" href="/dashboard/detail">
+              View details
+            </Link>
+          </div>
+      }
     </React.Fragment>
   );
 }

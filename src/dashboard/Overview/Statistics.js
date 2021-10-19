@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
-// import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
 import Title from "../Title";
-// import { shortDateFormat } from "../dateFormat";
-
-// function preventDefault(event) {
-//   event.preventDefault();
-// }
+import api from "../../utils/api";
 
 const useStyles = makeStyles({
   depositContext: {
@@ -18,40 +11,34 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Deposits() {
+export default () => {
   const classes = useStyles();
 
   const [recentDate, setRecentDate] = useState();
   const [recentThunderCount, setRecentThunderCount] = useState();
 
-  useEffect(() => {
+  const load = async () => {
     const key = window.localStorage.getItem("key");
-
-    async function fetchThunder() {
-      // let createDate;
-      let thunderCount = 0;
-
-      await axios
-        .post("https://api.cumulus.tophat.cloud/thunder/counts/recent", {
-          project_id: key,
-          limit: "1",
-        })
-        .then(function (response) {
-          // console.log(response);
-          // console.log(response.data);
-          thunderCount = Object.values(response.data);
-          setRecentDate(Object.keys(response.data));
-        })
-        .catch(function (error) {
-          console.log(error.response);
-          alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
-        })
-        .then(function () {
-          // 항상 실행
-          setRecentThunderCount(thunderCount);
-        });
+    let thunderCount = 0;
+    
+    try {
+      const data = await api.getThunderStats({
+        project_id: key,
+        limit: "1",
+      });
+  
+      thunderCount = Object.values(data);
+      setRecentDate(Object.keys(data));
+    } catch (err) {
+      console.log(err.response);
+      // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
     }
-    fetchThunder();
+
+    setRecentThunderCount(thunderCount);
+  };
+
+  useEffect(() => {
+    load();
   }, []);
 
   return (

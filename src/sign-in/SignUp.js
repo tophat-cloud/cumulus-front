@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
-
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,8 +12,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import api from '../utils/api';
 
-import Copyright from "../base/Copyright";
+import Copyright from "../components/Footer";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,47 +46,39 @@ export default function SignUp() {
   const reg_email =
     /^([0-9a-zA-Z_.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
-  const signUpPost = (e) => {
+  const signUpPost = async (e) => {
     e.preventDefault();
-    console.log(`email: ${emailValue}`);
-    console.log(`pw: ${pwValue}`);
-    console.log(`confirm: ${confimValue}`);
 
     if (emailValue === "") {
       alert("Please enter your email.");
+      return;
     } else if (!reg_email.test(emailValue)) {
       alert("Check your email.");
+      return;
     } else if (pwValue === "" || confimValue === "") {
       alert("Please enter your password and confirm.");
-    } else if (pwValue === confimValue) {
-      axios
-        .post("https://api.cumulus.tophat.cloud/member", {
-          email: emailValue,
-          password: pwValue,
-        })
-        .then(function (response) {
-          // console.log(response);
-          alert("Sign-up is completed! Please sign-in to use cumulus.");
-          window.location.pathname = "/signin"; // 로그인 페이지로 이동
-        })
-        .catch(function (error) {
-          console.log(error.response);
-          alert(error.response["data"]["message"]);
-          // alert(`회원가입 중 에러가 발생했습니다: ${error}`);
-          // console.log(error);
-        })
-        .then(function () {
-          // console.log("항상 실행");
-        });
-    } else {
-      alert(
-        "[Password verification error] Please input your correct password and try again."
-      );
+      return;
+    } else if (pwValue !== confimValue) {
+      alert("Please enter same password on confirm.");
+      return;
+    }
+
+    try {
+      await api.register({
+        email: emailValue,
+        username: emailValue,
+        password1: pwValue,
+        password2: confimValue,
+      });
+
+      window.location.href = "/signin";
+    } catch (err) {
+      alert(Object.values(err.response.data)[0]);
     }
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" style={{ marginTop: '25vh' }}>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -160,7 +151,7 @@ export default function SignUp() {
         </form>
       </div>
       <Box mt={5}>
-        <Copyright />
+        {/* <Copyright /> */}
       </Box>
     </Container>
   );

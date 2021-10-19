@@ -12,8 +12,10 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
-import Copyright from "../base/Copyright";
+import { useForm } from 'react-hook-form';
+import api from '../utils/api';
+import Copyright from "../components/Footer";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,9 +39,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const { register, handleSubmit } = useForm();
+
+  const onSignIn = async (data) => {
+    const { email, password } = data;
+
+    try {
+      const { key } = await api.login(data);
+
+      window.localStorage.setItem('token', key);
+      axios.defaults.headers.common['Authorization'] = key;
+      window.location.href = '/';
+    } catch (err) {
+      alert(Object.values(err.response.data)[0]);
+    }
+  };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" style={{ marginTop: '25vh' }}>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -59,6 +76,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            {...register('email')}
           />
           <TextField
             variant="outlined"
@@ -70,26 +88,28 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            {...register('password')}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit(onSignIn)}
           >
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
-            </Grid>
+            </Grid> */}
             <Grid item>
               <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
@@ -99,7 +119,7 @@ export default function SignIn() {
         </form>
       </div>
       <Box mt={8}>
-        <Copyright />
+        {/* <Copyright /> */}
       </Box>
     </Container>
   );
