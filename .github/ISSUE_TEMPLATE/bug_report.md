@@ -1,38 +1,33 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report a reproducible bug or regression in Cumulus Dashboard.
 title: ''
 labels: ''
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+<!-- Requirements: please go through this checklist before opening a new issue -->
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+- [ ] Review the documentation: https://cumulus.tophat.cloud/dashboard/documents
+- [ ] Search for existing issues: https://github.com/tophat-cloud/cumulus/issues
+- [ ] Use the latest release: https://github.com/tophat-cloud/cumulus/releases
+- [ ] Provide a link to the affected event from your Cumulus account
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Type + Version
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+- [ ] `Dashboard features`
+- [ ] `xss`
+- [ ] `sqlinjection`
+- [ ] `core`
+- [ ] other:
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+### Version:
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+```
+0.0.0
+```
 
-**Additional context**
-Add any other context about the problem here.
+## Description
+
+Describe your issue in detail, ideally, you have a reproducible demo that you can show.
