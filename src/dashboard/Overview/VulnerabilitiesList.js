@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -11,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 
 import Title from "../Title";
 import { simpleDateFormat } from "../dateFormat";
+import api from "../../utils/api";
 
 // Generate Order Data
 function createData(id, thunder_name, priority, url, created_at, project) {
@@ -31,56 +30,45 @@ export default function Orders() {
   const [rows, setRows] = useState([]);
   const [projectStatus, setProjectStatus] = useState("");
 
-  useEffect(() => {
+  const load = async () => {
     const key = window.localStorage.getItem("key");
-    async function fetchThunder() {
-      await axios
-        .post("/thunder", {
-          project_id: key,
-          limit: 5,
-        })
-        .then(function (response) {
-          // console.log(response);
-          // console.log(response.data);
 
-          for (const thunderElement in response.data) {
-            rowsAxios.push(
-              createData(
-                thunderElement * 1 + 1,
-                response.data[thunderElement]["thunder_name"],
-                response.data[thunderElement]["priority"],
-                response.data[thunderElement]["url"],
-                simpleDateFormat(
-                  new Date(response.data[thunderElement]["created_at"])
-                )
-              )
-            );
-          }
-        })
-        .catch(function (error) {
-          console.log(error.response);
-          // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
+    try {
+      const data = await api.getThunderDetail({
+        project_id: key,
+        limit: 5,
+      });
 
-          const errorData = error.response.data;
-          alert(errorData);
+      for (const thunderElement in data) {
+        rowsAxios.push(
+          createData(
+            thunderElement * 1 + 1,
+            data[thunderElement]["thunder_name"],
+            data[thunderElement]["priority"],
+            data[thunderElement]["url"],
+            simpleDateFormat(new Date(data[thunderElement]["created_at"]))
+          )
+        );
+      }
+    } catch (err) {
+      console.log(err.response);
+      // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
 
-          if (errorData === "thunder not found") {
-            window.localStorage.setItem("projectStatus", errorData);
-            // alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
-            // window.location.reload();
-          }
-        })
-        .then(function () {
-          // 항상 실행
-          setRows(rowsAxios);
-        });
+      const errorData = err.response.data;
 
-      // console.log("rowsAxios: ", rowsAxios);
+      if (errorData === "thunder not found") {
+        window.localStorage.setItem("projectStatus", errorData);
+        // alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
+        // window.location.reload();
+      }
     }
-    fetchThunder();
-  }, []);
 
-  // console.log("rows: ", rows);
+    setRows(rowsAxios);
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
 
   return (
     <React.Fragment>

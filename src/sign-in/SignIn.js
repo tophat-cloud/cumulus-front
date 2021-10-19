@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useForm } from 'react-hook-form';
-
+import api from '../utils/api';
 import Copyright from "../base/Copyright";
 import axios from "axios";
 
@@ -45,9 +45,9 @@ export default function SignIn() {
     const { email, password } = data;
 
     try {
-      const { data: { key } } = await axios.post('/rest-auth/login/', data);
-      window.localStorage.setItem('token', key);
+      const { key } = await api.login(data);
 
+      window.localStorage.setItem('token', key);
       axios.defaults.headers.common['Authorization'] = key;
       window.location.href = '/';
     } catch (err) {

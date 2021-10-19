@@ -7,8 +7,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
+import api from '../utils/api';
 
-export default function ProjectSelect() {
+export default () => {
   //   const [projectId, setProjectId] = React.useState("");
 
   const [projectsList, setProjectsList] = useState([]);
@@ -32,10 +33,8 @@ export default function ProjectSelect() {
         setProjectsList([]);
         // loading 상태를 true로 설정
         setLoading(true);
-        const response = await axios.get(
-          "/project"
-        );
-        setProjectsList(response.data); // 데이터는 response.data 안에 들어있다.
+        const data = await api.getProjectList();
+        setProjectsList(data); // 데이터는 response.data 안에 들어있다.
       } catch (e) {
         setError(e);
       }
@@ -47,7 +46,7 @@ export default function ProjectSelect() {
 
   //   console.log(projectsList);
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     if (event.target.value === "AddProject") {
       var date = new Date(); // 현재 날짜 및 시간
 
@@ -56,37 +55,29 @@ export default function ProjectSelect() {
         `project - ${date.toLocaleString().replace(/ /g, "")}`
       );
 
-      async function addNewProject() {
-        await axios
-          .post("/project", {
-            domain: "no-domain-data", // back-end에서 null 허용 후 삭제
-            title: newProjectName,
-            member: 8, // 로그인 기능 구현 후 수정
-          })
-          .then(function (response) {
-            // console.log(response);
-            // console.log(response.data);
-            setMakeNewProject(makeNewProject + 1);
-            // console.log(makeNewProject);
-            alert(`Successfully added project: ${newProjectName}`);
-          })
-          .catch(function (error) {
-            console.log(error.response);
-            alert(`프로젝트 추가 에러: ${error}`);
-          })
-          .then(function () {
-            // 항상 실행
-            setSelectedProjectId(null);
-          });
+      try {
+        const data = await api.createProject({
+          domain: '',
+          title: newProjectName,
+          // member: 8,
+        });
+  
+        setMakeNewProject(makeNewProject + 1);
+        alert(`Successfully added project: ${newProjectName}`);
+      } catch (err) {
+        console.log(error.response);
+        alert(`프로젝트 추가 에러: ${error}`);
       }
-      addNewProject();
-    } else {
-      selectedProjectId = event.target.value;
-      setSelectedProjectId(event.target.value);
-      window.localStorage.setItem("key", selectedProjectId);
-      // alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
-      window.location.reload();
+
+      setSelectedProjectId(null);
+      return;
     }
+
+    selectedProjectId = event.target.value;
+    setSelectedProjectId(event.target.value);
+    window.localStorage.setItem("key", selectedProjectId);
+    // alert(`선택된 프로젝트 ID: ${selectedProjectId}`);
+    window.location.reload();
   };
 
   return (
