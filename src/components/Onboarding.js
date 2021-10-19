@@ -2,6 +2,7 @@ import styled from "styled-components";
 import icon from "../assets/icons/wallet.png";
 import Button from "@material-ui/core/Button";
 import Color from "../utils/color";
+import api from "../utils/api";
 
 const Wrapper = styled.div`
   justify-content: center;
@@ -34,6 +35,29 @@ const StartButton = styled(Button)`
 `;
 
 export default () => {
+  const createProject = async () => {
+    const newProjectName = prompt(
+      "Input your first project name to start cumulus!",
+      '',
+    );
+
+    if (!newProjectName) {
+      return;
+    }
+
+    try {
+      const { id } = await api.createProject({
+        title: newProjectName,
+      });
+
+      window.localStorage.setItem("key", id);
+      window.location.reload();
+    } catch (err) {
+      console.log(err.response);
+      alert(`Oops..! failed add project, try again.`);
+    }
+  }
+
   return (
     <Wrapper>
       <Icon src={icon} width={100} height={100} />
@@ -43,6 +67,7 @@ export default () => {
 
       <StartButton
         variant="text"
+        onClick={createProject}
       >
         <strong style={{ color: Color.primary }}>Start new project</strong>
       </StartButton>

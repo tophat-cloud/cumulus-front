@@ -8,6 +8,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
 import api from '../utils/api';
+import { ErrorOutlineRounded } from "@material-ui/icons";
 
 export default () => {
   //   const [projectId, setProjectId] = React.useState("");
@@ -66,7 +67,7 @@ export default () => {
       window.localStorage.setItem("key", id);
       window.location.reload();
     } catch (err) {
-      console.log(error.response);
+      console.log(err.response);
       alert(`Oops..! failed add project, try again.`);
     }
 
