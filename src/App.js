@@ -13,7 +13,7 @@ import Landing from './landing';
 import Layout from './components/Layout';
 
 axios.defaults.baseURL = 'https://api.cumulus.tophat.cloud';
-axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') || '';
+axios.defaults.headers.common['Authorization'] = 'Token ' + (localStorage.getItem('token') || '');
 axios.defaults.headers.common['Content-Type'] ='application/x-www-form-urlencoded';
 axios.defaults.withCredentials = false;
 
