@@ -2,8 +2,6 @@ import React from "react";
 import { Route } from "react-router-dom";
 import axios from 'axios';
 
-// import Hello from "./Hello";
-// import Dashboard from "./dashboard/Dashboard";
 import Overview from "./dashboard/Overview/Overview";
 import DetailList from "./dashboard/DetailList/DetailList";
 import Documents from "./dashboard/Information/Documents";
@@ -21,13 +19,13 @@ axios.defaults.withCredentials = false;
 const RouteWithLayout = ({ path, component: Component }) => {
   return (
     <Route
+      exact
       path={path}
       render={(props) => (
         <Layout>
           <Component {...props}/>
         </Layout>
       )}
-      exact
     />
   );
 };
@@ -39,7 +37,7 @@ export default () => {
         <Route path="/" component={Landing} exact />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
-        <Route component={NotFound} />
+        {/* <Route component={NotFound} /> */}
       </>
     );
   }
@@ -49,7 +47,7 @@ export default () => {
       <RouteWithLayout path="/" component={Overview} />
       <RouteWithLayout path="/dashboard/detail" component={DetailList} />
       <RouteWithLayout path="/dashboard/documents" component={Documents} />
-      <Route component={NotFound} />
+      {/* <Route component={NotFound} /> */}
     </>
   );
 };
