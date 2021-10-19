@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
 import Title from "../Title";
 import api from "../../utils/api";
 
-const useStyles = makeStyles({
-  depositContext: {
-    flex: 1,
-  },
-});
 
 export default () => {
-  const classes = useStyles();
-
   const [recentDate, setRecentDate] = useState();
   const [recentThunderCount, setRecentThunderCount] = useState();
 
@@ -43,17 +35,20 @@ export default () => {
 
   return (
     <React.Fragment>
-      <Title>Weakness Detection</Title>
-      <Typography component="p" variant="h4">
-        {recentThunderCount}
-      </Typography>
-      <Typography color="textSecondary" className={classes.depositContext}>
+      <Title>Daily Status</Title>
+      <Typography color="textSecondary">
         {recentDate}
       </Typography>
-      {/* <Link color="primary" href="/dashboard/detail" onClick={preventDefault}> */}
-      {/* <Link color="primary" href="/dashboard/detail">
-          View details
-        </Link> */}
+      <div style={{ textAlign: 'center', paddingTop: 32 }}>
+        <Typography component="p" variant="h4">
+          {recentThunderCount}
+        </Typography>
+
+        <Typography color="textSecondary">
+          detected
+        </Typography>
+
+      </div>
     </React.Fragment>
   );
 }
