@@ -11,6 +11,7 @@ import SignIn from "./sign-in/SignIn";
 import SignUp from "./sign-in/SignUp";
 import Landing from './landing';
 import Layout from './components/Layout';
+import NotFound from './components/NotFound';
 
 axios.defaults.baseURL = 'https://api.cumulus.tophat.cloud';
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') ? `Token ${localStorage.getItem('token')}` : '';
@@ -38,6 +39,7 @@ export default () => {
         <Route path="/" component={Landing} exact />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
+        <Route component={NotFound} />
       </>
     );
   }
@@ -47,6 +49,7 @@ export default () => {
       <RouteWithLayout path="/" component={Overview} />
       <RouteWithLayout path="/dashboard/detail" component={DetailList} />
       <RouteWithLayout path="/dashboard/documents" component={Documents} />
+      <Route component={NotFound} />
     </>
   );
 };
