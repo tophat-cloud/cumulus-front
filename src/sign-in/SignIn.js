@@ -14,7 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useForm } from 'react-hook-form';
 import api from '../utils/api';
-import Copyright from "../base/Copyright";
+import Copyright from "../components/Footer";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({

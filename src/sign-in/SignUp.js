@@ -14,7 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import api from '../utils/api';
 
-import Copyright from "../base/Copyright";
+import Copyright from "../components/Footer";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

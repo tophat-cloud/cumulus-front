@@ -16,7 +16,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import { projectList, mainListItems } from "./listItems";
 import { useStyles } from "./useStyles";
-import Copyright from "../base/Copyright";
+import Copyright from "../components/Footer";
 import LogoutButton from '../components/LogoutButton';
 
 
