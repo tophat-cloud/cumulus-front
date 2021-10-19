@@ -1,10 +1,19 @@
 import React from "react";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
+import styled from "styled-components";
+
+const Footer = styled.footer`
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  height: 100px;
+  margin-top: auto;
+`;
 
 export default () => {
   return (
-    <>
+    <Footer>
       {/* Copyright */}
       <Typography variant="body2" color="textSecondary" align="center">
         {"Copyright © "}
@@ -25,6 +34,6 @@ export default () => {
           {"OpenSourceLicence"}
         </Link>
       </Typography>
-    </>
+    </Footer>
   );
 }

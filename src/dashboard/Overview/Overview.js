@@ -4,21 +4,19 @@ import clsx from "clsx";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
-import DashboardComponent from "../Dashboard";
-import { useStyles } from "../useStyles";
+import { useStyles } from "../../utils/useStyles";
 
 import Chart from "./Chart";
 import VulnerabilityDetection from "./Statistics";
 import RecentVulnerabilities from "./VulnerabilitiesList";
 
-export default function OverviewComponent() {
+export default () => {
   const classes = useStyles();
-
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <>
-      <DashboardComponent>
+      {/* <DashboardComponent> */}
         <Grid container spacing={3}>
           {/* Chart */}
           <Grid item xs={12} md={8} lg={9}>
@@ -39,7 +37,7 @@ export default function OverviewComponent() {
             </Paper>
           </Grid>
         </Grid>
-      </DashboardComponent>
+      {/* </DashboardComponent> */}
     </>
   );
 }

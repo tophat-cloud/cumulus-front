@@ -3,49 +3,40 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import { CopyBlock, dracula } from "react-code-blocks";
 
-// import Grid from "@material-ui/core/Grid";
-// import Paper from "@material-ui/core/Paper";
-
-import DashboardComponent from "../Dashboard";
-// import { useStyles } from "../useStyles";
-
 const key = window.localStorage.getItem("key");
 
-const information1 = `
-# Documents
-
-## Setup
-
-To install a SDK, simply add package like belows:
-`;
-
-const information2 = `npm install --save https://github.com/tophat-cloud/cumulus
+const installCode = `
+npm install --save https://github.com/tophat-cloud/cumulus
 yarn add https://github.com/tophat-cloud/cumulus
-`;
+`
 
-const information3 = `Setup and usage of these SDKs always follows the same principle.`;
-
-const information4 = `import { protect } from 'cumulus';
+const runCode = `
+import { protect } from 'cumulus';
 
 protect({
   key: '${key}',
 });
 
 captureMessage('Hello, world!');
-`;
+`.trim();
 
-export default function Documents() {
-  // const classes = useStyles();
-
-  // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+export default () => {
   return (
-    <DashboardComponent>
-      <ReactMarkdown>{information1}</ReactMarkdown>
+    <div>
+      <p style={{ fontWeight: 500, fontSize: 24, marginBottom: 8 }}>
+        Documents
+      </p>
+
+      <p style={{ fontWeight: 500, fontSize: 20, marginBottom: 8 }}>
+        Setup
+      </p>
+
+      <p style={{ marginBottom: 8}}>To install a SDK, simply add package like belows:</p>
+
 
       <CopyBlock
         language={"bash"}
-        text={information2}
+        text={installCode}
         showLineNumbers={true}
         theme={dracula}
         wrapLines={true}
@@ -54,16 +45,16 @@ export default function Documents() {
 
       <br />
 
-      <ReactMarkdown>{information3}</ReactMarkdown>
+      <p style={{ marginBottom: 8}}>Setup and usage of these SDKs always follows the same principle.</p>
 
       <CopyBlock
         language={"javascript"}
-        text={information4}
+        text={runCode}
         showLineNumbers={true}
         theme={dracula}
         wrapLines={true}
         codeBlock
       />
-    </DashboardComponent>
+    </div>
   );
 }

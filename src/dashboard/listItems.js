@@ -8,7 +8,7 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import DnsIcon from "@material-ui/icons/Dns";
 import InfoIcon from "@material-ui/icons/Info";
 
-import ProjectSelect from "./selectProject";
+import ProjectSelect from "../components/selectProject";
 
 export const projectList = (
   <div>

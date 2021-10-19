@@ -19,7 +19,6 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 // import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
-import DashboardComponent from "../Dashboard";
 import { simpleDateFormat } from "../dateFormat";
 // import { useStyles } from "../useStyles";
 
@@ -183,7 +182,6 @@ export default function DetailList() {
   }, []);
 
   return (
-    <DashboardComponent>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
@@ -205,6 +203,5 @@ export default function DetailList() {
           </TableBody>
         </Table>
       </TableContainer>
-    </DashboardComponent>
   );
 }

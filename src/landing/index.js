@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./tailwind.min.css";
 import "./style.css";
-import icon from "./icon.png";
+import icon from "../assets/icons/logo.png";
 
 export default () => {
   useEffect(() => {
