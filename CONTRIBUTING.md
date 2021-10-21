@@ -4,9 +4,7 @@
       <img src="https://jinui.s3.ap-northeast-2.amazonaws.com/tophat/logo.png" alt="Cumulus" height="72">
     </a>
   </p>
-  <p align="center">
-    Application Weakness Monitoring Software
-  </p>
+
 </p>
 
 # Contributing
@@ -48,17 +46,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
-
-## Author
-
-<p align="center">
-  <p align="center">
-    <a href="https://github.com/tophat-cloud" target="_blank">
-      <img src="https://jinui.s3.ap-northeast-2.amazonaws.com/tophat/tophat.png" alt="TopHat" height="100">
-    </a>
-  </p>
-
-  <p align="center">
-    <a href="https://github.com/wookingwoo" target="_blank">@JeongHeon Woo</a>&nbsp from <strong>TopHat</strong>
-  </p>
-</p>
