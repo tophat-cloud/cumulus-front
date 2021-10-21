@@ -36,29 +36,36 @@ const Row = (props) => {
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
 
-  console.log(row.details);
+  // console.log(row.details);
 
   let detailData = row.details;
 
-  console.log(detailData);
+  // console.log(detailData);
 
   let descriptionData = "no-data";
   let suggestionData = "no-data";
   let referenceData = "no-data";
 
   if (detailData !== null && detailData !== undefined) {
-    detailData = JSON.parse(detailData);
+    try {
+      detailData = JSON.parse(detailData);
 
-    if (detailData.description !== undefined) {
-      descriptionData = detailData.description;
-    }
+      if (detailData.description !== undefined) {
+        descriptionData = detailData.description;
+      }
 
-    if (detailData.suggestion !== undefined) {
-      suggestionData = detailData.suggestion;
-    }
+      if (detailData.suggestion !== undefined) {
+        suggestionData = detailData.suggestion;
+      }
 
-    if (detailData.reference !== undefined) {
-      referenceData = detailData.reference;
+      if (detailData.reference !== undefined) {
+        referenceData = detailData.reference;
+      }
+    } catch (error) {
+      console.error(error);
+      descriptionData = "error";
+      suggestionData = "error";
+      referenceData = "error";
     }
   }
 
