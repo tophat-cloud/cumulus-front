@@ -42,15 +42,11 @@ const Row = (props) => {
 
   console.log(detailData);
 
-  let descriptionData = "";
-  let suggestionData = "";
-  let referenceData = "";
+  let descriptionData = "no-data";
+  let suggestionData = "no-data";
+  let referenceData = "no-data";
 
-  if (detailData == null || detailData === undefined) {
-    descriptionData = "no-data";
-    suggestionData = "no-data";
-    referenceData = "no-data";
-  } else {
+  if (detailData !== null && detailData !== undefined) {
     detailData = JSON.parse(detailData);
 
     if (detailData.description !== undefined) {
