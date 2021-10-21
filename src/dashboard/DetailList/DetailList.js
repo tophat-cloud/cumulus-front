@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import api from "../../utils/api";
 
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
@@ -21,6 +20,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+
+import api from "../../utils/api";
+
 dayjs.extend(relativeTime);
 
 const useRowStyles = makeStyles({
@@ -172,6 +174,21 @@ Row.propTypes = {
 export default function DetailList() {
   // const classes = useStyles();
   // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  useEffect(() => {
+    checkNoProject();
+  }, []);
+
+  const checkNoProject = async () => {
+    const projectList = await api.getProjectList();
+    const isNoProject = projectList.length < 1;
+
+    if (isNoProject) {
+      alert(
+        "You haven't any project. Add new project to start tracking weakness!"
+      );
+    }
+  };
 
   const [rows, setRows] = useState([]);
 

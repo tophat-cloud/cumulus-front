@@ -5,8 +5,8 @@ import icon from "../assets/icons/logo.png";
 
 export default () => {
   const onCommingSoon = () => {
-    alert('comming soon!');
-  }
+    alert("comming soon!");
+  };
 
   useEffect(() => {
     var scrollpos = window.scrollY;
@@ -175,7 +175,7 @@ export default () => {
             <button
               id="navAction"
               class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-              onClick={() => window.location.href = '/signup'}
+              onClick={() => (window.location.href = "/signup")}
             >
               GET STARTED
             </button>
@@ -198,7 +198,7 @@ export default () => {
             <button
               class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
               style={{ zIndex: 10 }}
-              onClick={() => window.location.href = '/signup'}
+              onClick={() => (window.location.href = "/signup")}
             >
               Try Cumulus
             </button>
@@ -258,11 +258,19 @@ export default () => {
                 Guide, easily
               </h3>
               <p class="text-gray-600 mb-8">
-                weakness type, origin url, help docs - Cumulus helps to make it understand using guide
+                weakness type, origin url, help docs - Cumulus helps to make it
+                understand using guide
                 <br />
                 <br />
-
-                <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" onClick={() => window.location.href = 'https://top-hat.notion.site/Sample-Guide-df24584bd78841bb9fc2ea27099718d4'}>
+                <button
+                  class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                  onClick={() =>
+                    window.open(
+                      "https://top-hat.notion.site/Sample-Guide-df24584bd78841bb9fc2ea27099718d4",
+                      "_blank"
+                    )
+                  }
+                >
                   SEE A SAMPLE GUIDE
                 </button>
               </p>
@@ -705,10 +713,19 @@ export default () => {
                   Context, numerically
                 </h3>
                 <p class="text-gray-600 mb-8">
-                  Quickly provide insights as some number and graph. can check service's security level throw web dashboard
+                  Quickly provide insights as some number and graph. can check
+                  service's security level throw web dashboard
                   <br />
                   <br />
-                  <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" onClick={() => window.location.href = 'https://top-hat.notion.site/Sample-Graph-861a91cf0b55455388cb3feef69fe4e0'}>
+                  <button
+                    class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                    onClick={() =>
+                      window.open(
+                        "https://top-hat.notion.site/Sample-Graph-861a91cf0b55455388cb3feef69fe4e0",
+                        "_blank"
+                      )
+                    }
+                  >
                     SEE A SAMPLE GRAPH
                   </button>
                 </p>
@@ -721,11 +738,19 @@ export default () => {
                 Timeline, discovered
               </h3>
               <p class="text-gray-600 mb-8">
-                It's not focus on just timeline. working on everyday, can check status each time
+                It's not focus on just timeline. working on everyday, can check
+                status each time
                 <br />
                 <br />
-
-                <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" onClick={() => window.location.href = 'https://top-hat.notion.site/Sample-TimeLine-6a523799f84941b0a7f1cedb9c6991b1'}>
+                <button
+                  class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                  onClick={() =>
+                    window.open(
+                      "https://top-hat.notion.site/Sample-TimeLine-6a523799f84941b0a7f1cedb9c6991b1",
+                      "_blank"
+                    )
+                  }
+                >
                   SEE A SAMPLE TIMELINE
                 </button>
               </p>
@@ -1021,13 +1046,14 @@ export default () => {
                 class="flex flex-wrap no-underline hover:no-underline"
               >
                 <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-                  <br/>
+                  <br />
                 </p>
                 <div class="w-full font-bold text-xl text-gray-800 px-6">
                   Simply install
                 </div>
                 <p class="text-gray-800 text-base px-6 mb-5">
-                  Cumulus can install powered by npm easily. so your projects are intergrating tracksolution right now!
+                  Cumulus can install powered by npm easily. so your projects
+                  are intergrating tracksolution right now!
                 </p>
               </a>
             </div>
@@ -1046,13 +1072,15 @@ export default () => {
                 class="flex flex-wrap no-underline hover:no-underline"
               >
                 <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-                  <br/>
+                  <br />
                 </p>
                 <div class="w-full font-bold text-xl text-gray-800 px-6">
                   Tracking in a realtime
                 </div>
                 <p class="text-gray-800 text-base px-6 mb-5">
-                  General security scanners are not working on realtime. but almost service needs track on realtime to able to don't care about managing security issues.
+                  General security scanners are not working on realtime. but
+                  almost service needs track on realtime to able to don't care
+                  about managing security issues.
                 </p>
               </a>
             </div>
@@ -1071,20 +1099,22 @@ export default () => {
                 class="flex flex-wrap no-underline hover:no-underline"
               >
                 <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-                  <br/>
+                  <br />
                 </p>
                 <div class="w-full font-bold text-xl text-gray-800 px-6">
                   Community based SDK
                 </div>
                 <p class="text-gray-800 text-base px-6 mb-5">
-                  Cumulus hasn't specific owner. all of the solution is based on opensource community. we can grow-up together and anyone can contribute to cumulus project.
-                  <br/>
-                  <br/>
-                  <br/>
+                  Cumulus hasn't specific owner. all of the solution is based on
+                  opensource community. we can grow-up together and anyone can
+                  contribute to cumulus project.
+                  <br />
+                  <br />
+                  <br />
                 </p>
               </a>
             </div>
-            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6" >
+            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div class="flex items-center justify-end">
                 {/* <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                   Action
@@ -1094,7 +1124,7 @@ export default () => {
           </div>
         </div>
       </section>
-      <section class="bg-gray-100 py-8" id="pricing" style={{ paddingTop: 64}}>
+      <section class="bg-gray-100 py-8" id="pricing" style={{ paddingTop: 64 }}>
         <div class="container mx-auto px-2 pt-4 pb-12 text-gray-800">
           <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
             Pricing
@@ -1157,13 +1187,13 @@ export default () => {
                 <div class="p-8 text-3xl font-bold text-center border-b-4">
                   Business
                 </div>
-                <ul class="w-full text-center text-sm" style={{  }}>
+                <ul class="w-full text-center text-sm" style={{}}>
                   <li class="border-b py-4">COMMING SOON</li>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
                 </ul>
               </div>
               <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
@@ -1172,7 +1202,7 @@ export default () => {
                   <span class="text-base">/mo</span>
                 </div>
                 <div class="flex items-center justify-center">
-                  <button 
+                  <button
                     class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                     onClick={onCommingSoon}
                   >
@@ -1224,7 +1254,12 @@ export default () => {
         <h3 class="my-4 text-3xl leading-tight">
           Cumulus is maintaining on opensource project
         </h3>
-        <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" onClick={() => window.location.href = 'https://discord.gg/BH7h6F2C7N'}>
+        <button
+          class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+          onClick={() =>
+            window.open("https://github.com/tophat-cloud", "_blank")
+          }
+        >
           Go!
         </button>
       </section>
@@ -1251,6 +1286,7 @@ export default () => {
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
                     href="https://github.com/tophat-cloud"
+                    target="_blank"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
                     Official Site
@@ -1275,13 +1311,14 @@ export default () => {
                 </li>
               </ul>
             </div>
-            
+
             <div class="flex-1">
               <p class="uppercase text-gray-500 md:mb-6">Legal</p>
               <ul class="list-reset mb-6">
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
                     href="/terms.html"
+                    target="_blank"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
                     Terms
@@ -1290,6 +1327,7 @@ export default () => {
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
                     href="/privacy.html"
+                    target="_blank"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
                     Privacy
@@ -1298,6 +1336,7 @@ export default () => {
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
                     href="/license.html"
+                    target="_blank"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
                     License
@@ -1311,6 +1350,7 @@ export default () => {
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
                     href="https://github.com/tophat-cloud/cumulus"
+                    target="_blank"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
                     SDK
@@ -1319,6 +1359,7 @@ export default () => {
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
                     href="https://github.com/tophat-cloud/cumulus-scanner"
+                    target="_blank"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
                     Scanner
@@ -1332,6 +1373,7 @@ export default () => {
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
                     href="https://status.tophat.cloud"
+                    target="_blank"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
                     Service Status
@@ -1340,6 +1382,7 @@ export default () => {
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
                     href="https://app.codecov.io/gh/tophat-cloud/cumulus/"
+                    target="_blank"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
                     Code Status

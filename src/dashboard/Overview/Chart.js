@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 import { useTheme } from "@material-ui/core/styles";
 import {
@@ -12,7 +12,7 @@ import {
 } from "recharts";
 
 import Title from "../Title";
-import { chartDateFormat } from "../dateFormat";
+// import { chartDateFormat } from "../dateFormat";
 import api from "../../utils/api";
 
 // Generate Sales Data
