@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-
+import React from "react";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,7 +15,6 @@ import clsx from "clsx";
 import { useStyles } from "../utils/useStyles";
 import ProjectSelect from "./ProjectSelector";
 import Logo from "./Logo";
-import api from "../utils/api";
 
 const mainListItems = (
   <div>
@@ -43,21 +41,6 @@ const mainListItems = (
 
 export default ({ open, handleDrawerClose }) => {
   const classes = useStyles();
-
-  useEffect(() => {
-    checkNoProject();
-  }, []);
-
-  const checkNoProject = async () => {
-    const projectList = await api.getProjectList();
-    const isNoProject = projectList.length < 1;
-
-    if (isNoProject) {
-      alert(
-        "You haven't any project. Add new project to start tracking weakness!"
-      );
-    }
-  };
 
   return (
     <Drawer

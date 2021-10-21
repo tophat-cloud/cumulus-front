@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import clsx from "clsx";
 import ReactMarkdown from "react-markdown";
 import { CopyBlock, dracula } from "react-code-blocks";
 
-const key = window.localStorage.getItem("key");
+import api from "../../utils/api";
+
+let key = window.localStorage.getItem("key");
+
+if (key == null) {
+  key = "add-project-before-setup";
+}
 
 const installCode = `
 npm install --save https://github.com/tophat-cloud/cumulus
@@ -21,6 +27,21 @@ captureMessage('Hello, world!');
 `.trim();
 
 export default () => {
+  useEffect(() => {
+    checkNoProject();
+  }, []);
+
+  const checkNoProject = async () => {
+    const projectList = await api.getProjectList();
+    const isNoProject = projectList.length < 1;
+
+    if (isNoProject) {
+      alert(
+        "You haven't any project. Add new project to start tracking weakness!"
+      );
+    }
+  };
+
   return (
     <div>
       <p style={{ fontWeight: 500, fontSize: 24, marginBottom: 8 }}>
