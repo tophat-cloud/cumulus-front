@@ -148,8 +148,9 @@ export default () => {
             <ul class="list-reset lg:flex justify-end flex-1 items-center">
               <li class="mr-3">
                 <a
+                  href="https://github.com/tophat-cloud/cumulus/wiki"
+                  target="_blank"
                   class="inline-block py-2 px-4 text-black font-bold no-underline"
-                  href="#"
                 >
                   DOCUMENTS
                 </a>
@@ -261,7 +262,7 @@ export default () => {
                 <br />
                 <br />
 
-                <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" onClick={() => window.location.href = 'https://top-hat.notion.site/Sample-Guide-df24584bd78841bb9fc2ea27099718d4'}>
                   SEE A SAMPLE GUIDE
                 </button>
               </p>
@@ -707,7 +708,7 @@ export default () => {
                   Quickly provide insights as some number and graph. can check service's security level throw web dashboard
                   <br />
                   <br />
-                  <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                  <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" onClick={() => window.location.href = 'https://top-hat.notion.site/Sample-Graph-861a91cf0b55455388cb3feef69fe4e0'}>
                     SEE A SAMPLE GRAPH
                   </button>
                 </p>
@@ -724,7 +725,7 @@ export default () => {
                 <br />
                 <br />
 
-                <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" onClick={() => window.location.href = 'https://top-hat.notion.site/Sample-TimeLine-6a523799f84941b0a7f1cedb9c6991b1'}>
                   SEE A SAMPLE TIMELINE
                 </button>
               </p>
@@ -1257,7 +1258,8 @@ export default () => {
                 </li>
                 <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                   <a
-                    href="#"
+                    href="https://top-hat.notion.site/TopHat-Introduce-63cb4d40a5f741e79e10d44b07da5bc5"
+                    target="_blank"
                     class="no-underline hover:underline text-gray-800 hover:text-pink-500"
                   >
                     About Us

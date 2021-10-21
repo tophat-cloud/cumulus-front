@@ -9,9 +9,9 @@ import TableRow from "@material-ui/core/TableRow";
 import Title from "../Title";
 import api from "../../utils/api";
 import CleanGuide from "../../components/CleanGuide";
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-dayjs.extend(relativeTime)
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 const useStyles = makeStyles((theme) => ({
   seeMore: {
@@ -60,48 +60,66 @@ export default () => {
       <Title>Recent Weakness</Title>
       <Table size="small">
         {
-          isEmptyWeakness &&
-          <CleanGuide/>
+          isEmptyWeakness && <CleanGuide />
           // <TableBody>
           //     <span>We couldn't find any weaknesses.</span>
           //   </TableBody>
         }
 
-        {
-          isEmptyWeakness ||
+        {isEmptyWeakness || (
           <>
             <TableHead>
               <TableRow>
-                <TableCell style={{ fontWeight: 'bold' }} align="left">No</TableCell>
-                <TableCell style={{ fontWeight: 'bold' }} align="left">Issue</TableCell>
-                <TableCell style={{ fontWeight: 'bold' }} align="left">Level</TableCell>
-                <TableCell style={{ fontWeight: 'bold' }} align="left">URL</TableCell>
-                <TableCell style={{ fontWeight: 'bold' }} align="left">Time</TableCell>
+                <TableCell style={{ fontWeight: "bold" }} align="left">
+                  No
+                </TableCell>
+                <TableCell style={{ fontWeight: "bold" }} align="left">
+                  Issue
+                </TableCell>
+                <TableCell style={{ fontWeight: "bold" }} align="left">
+                  Level
+                </TableCell>
+                <TableCell style={{ fontWeight: "bold" }} align="left">
+                  URL
+                </TableCell>
+                <TableCell style={{ fontWeight: "bold" }} align="left">
+                  Time
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.id}>
-                    <TableCell>{row.id}</TableCell>
-                    <TableCell>{row.thunder_name}</TableCell>
-                    <TableCell style={{ color: ['red', 'orange', 'yellow'][row.priority - 1], fontWeight: 'bold' }}>{['HIGH', 'NORMAL', 'LOW'][row.priority - 1]}</TableCell>
-                    <TableCell><Link href={row.url} target="_blank">{row.url}</Link></TableCell>
-                    <TableCell>{dayjs(row.created_at).fromNow()}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </>
-        }
+              {rows.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell>{row.id}</TableCell>
+                  <TableCell>{row.thunder_name}</TableCell>
+                  <TableCell
+                    style={{
+                      color: ["red", "orange", "green"][row.priority - 1],
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {["HIGH", "NORMAL", "LOW"][row.priority - 1]}
+                  </TableCell>
+                  <TableCell>
+                    <Link href={row.url} target="_blank">
+                      {row.url}
+                    </Link>
+                  </TableCell>
+                  <TableCell>{dayjs(row.created_at).fromNow()}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
       </Table>
 
-      {
-        isEmptyWeakness ||
-          <div className={classes.seeMore}>
-            <Link color="primary" href="/dashboard/detail">
-              View details
-            </Link>
-          </div>
-      }
+      {isEmptyWeakness || (
+        <div className={classes.seeMore}>
+          <Link color="primary" href="/dashboard/detail">
+            View details
+          </Link>
+        </div>
+      )}
     </React.Fragment>
   );
-}
+};
