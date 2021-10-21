@@ -265,8 +265,10 @@ export default () => {
                 <button
                   class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                   onClick={() =>
-                    (window.location.href =
-                      "https://top-hat.notion.site/Sample-Guide-df24584bd78841bb9fc2ea27099718d4")
+                    window.open(
+                      "https://top-hat.notion.site/Sample-Guide-df24584bd78841bb9fc2ea27099718d4",
+                      "_blank"
+                    )
                   }
                 >
                   SEE A SAMPLE GUIDE
@@ -718,8 +720,10 @@ export default () => {
                   <button
                     class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                     onClick={() =>
-                      (window.location.href =
-                        "https://top-hat.notion.site/Sample-Graph-861a91cf0b55455388cb3feef69fe4e0")
+                      window.open(
+                        "https://top-hat.notion.site/Sample-Graph-861a91cf0b55455388cb3feef69fe4e0",
+                        "_blank"
+                      )
                     }
                   >
                     SEE A SAMPLE GRAPH
@@ -741,8 +745,10 @@ export default () => {
                 <button
                   class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                   onClick={() =>
-                    (window.location.href =
-                      "https://top-hat.notion.site/Sample-TimeLine-6a523799f84941b0a7f1cedb9c6991b1")
+                    window.open(
+                      "https://top-hat.notion.site/Sample-TimeLine-6a523799f84941b0a7f1cedb9c6991b1",
+                      "_blank"
+                    )
                   }
                 >
                   SEE A SAMPLE TIMELINE
