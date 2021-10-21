@@ -11,7 +11,7 @@ yarn add https://github.com/tophat-cloud/cumulus
 `.trim();
 
 const runCode = `
-import { protect } from 'cumulus';
+import { protect, captureMessage } from 'cumulus';
 
 protect({
   key: '${key}',
@@ -27,12 +27,11 @@ export default () => {
         Documents
       </p>
 
-      <p style={{ fontWeight: 500, fontSize: 20, marginBottom: 8 }}>
-        Setup
+      <p style={{ fontWeight: 500, fontSize: 20, marginBottom: 8 }}>Setup</p>
+
+      <p style={{ marginBottom: 8 }}>
+        To install a SDK, simply add package like belows:
       </p>
-
-      <p style={{ marginBottom: 8}}>To install a SDK, simply add package like belows:</p>
-
 
       <CopyBlock
         language={"bash"}
@@ -45,7 +44,9 @@ export default () => {
 
       <br />
 
-      <p style={{ marginBottom: 8}}>Setup and usage of these SDKs always follows the same principle.</p>
+      <p style={{ marginBottom: 8 }}>
+        Setup and usage of these SDKs always follows the same principle.
+      </p>
 
       <CopyBlock
         language={"javascript"}
@@ -57,4 +58,4 @@ export default () => {
       />
     </div>
   );
-}
+};

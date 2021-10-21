@@ -20,7 +20,7 @@ function createData(time, amount) {
   return { time, amount };
 }
 
-const thunderStatiscics = [];
+let thunderStatiscics = [];
 
 export default function Deposits() {
   const theme = useTheme();
@@ -34,9 +34,13 @@ export default function Deposits() {
         project_id: key,
       });
 
+      thunderStatiscics = [];
+
       for (const date in data) {
-        thunderStatiscics.unshift(createData(date, data[date]));
+        thunderStatiscics.push(createData(date, data[date]));
       }
+
+      console.log(thunderStatiscics);
     } catch (err) {
       console.log(err.response);
       // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);

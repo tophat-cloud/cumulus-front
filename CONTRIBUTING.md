@@ -4,9 +4,7 @@
       <img src="https://jinui.s3.ap-northeast-2.amazonaws.com/tophat/logo.png" alt="Cumulus" height="72">
     </a>
   </p>
-  <p align="center">
-    Application Weakness Monitoring Software
-  </p>
+
 </p>
 
 # Contributing

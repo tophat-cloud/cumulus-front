@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import api from '../../utils/api';
+import api from "../../utils/api";
 
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
@@ -19,9 +19,9 @@ import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-dayjs.extend(relativeTime)
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 const useRowStyles = makeStyles({
   root: {
@@ -31,11 +31,36 @@ const useRowStyles = makeStyles({
   },
 });
 
-
 const Row = (props) => {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
+
+  console.log(row.details);
+
+  let detailData = row.details;
+
+  console.log(detailData);
+
+  let descriptionData = "no-data";
+  let suggestionData = "no-data";
+  let referenceData = "no-data";
+
+  if (detailData !== null && detailData !== undefined) {
+    detailData = JSON.parse(detailData);
+
+    if (detailData.description !== undefined) {
+      descriptionData = detailData.description;
+    }
+
+    if (detailData.suggestion !== undefined) {
+      suggestionData = detailData.suggestion;
+    }
+
+    if (detailData.reference !== undefined) {
+      referenceData = detailData.reference;
+    }
+  }
 
   return (
     <React.Fragment>
@@ -52,9 +77,20 @@ const Row = (props) => {
 
         <TableCell>{row.id}</TableCell>
         <TableCell>{row.thunder_name}</TableCell>
-        <TableCell style={{ color: ['red', 'orange', 'yellow'][row.priority - 1], fontWeight: 'bold' }}>{['HIGH', 'NORMAL', 'LOW'][row.priority - 1]}</TableCell>
-        <TableCell><Link href={row.url} target="_blank">{row.url}</Link></TableCell>
-        <TableCell>{dayjs(row.created_at).format('HH:mm:ss')}</TableCell>
+        <TableCell
+          style={{
+            color: ["red", "orange", "yellow"][row.priority - 1],
+            fontWeight: "bold",
+          }}
+        >
+          {["HIGH", "NORMAL", "LOW"][row.priority - 1]}
+        </TableCell>
+        <TableCell>
+          <Link href={row.url} target="_blank">
+            {row.url}
+          </Link>
+        </TableCell>
+        <TableCell>{dayjs(row.created_at).format("HH:mm:ss")}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -70,23 +106,33 @@ const Row = (props) => {
                 <strong>Issue</strong> {row.thunder_name}
               </Typography>
 
-              <ul> 
+              <ul>
                 <ListItem>
                   <strong style={{ marginRight: 8 }}>weakness → </strong>
-                  <ListItemText primary={'detailData.insecureCode'}/>
+                  <ListItemText primary={row.thunder_name} />
                 </ListItem>
                 <ListItem>
                   <strong style={{ marginRight: 8 }}>description → </strong>
-                  <ListItemText primary={'detailData.comment'}/>
+                  <ListItemText primary={descriptionData} />
                 </ListItem>
 
                 <ListItem>
                   <strong style={{ marginRight: 8 }}>suggestion → </strong>
-                  <ListItemText primary={'detailData.suggestion'}/>
+                  <ListItemText primary={suggestionData} />
                 </ListItem>
                 <ListItem>
                   <strong style={{ marginRight: 8 }}>reference → </strong>
-                  <ListItemText primary={'detailData.rel_link'}/>
+                  <ListItemText>
+                    {referenceData === "no-data" && (
+                      <ListItemText primary={referenceData} />
+                    )}
+
+                    {referenceData !== "no-data" && (
+                      <Link href={referenceData} target="_blank">
+                        {referenceData}
+                      </Link>
+                    )}
+                  </ListItemText>
                 </ListItem>
                 <br />
               </ul>
@@ -96,7 +142,7 @@ const Row = (props) => {
       </TableRow>
     </React.Fragment>
   );
-}
+};
 
 Row.propTypes = {
   row: PropTypes.shape({
@@ -135,33 +181,39 @@ export default function DetailList() {
       console.log(err.response);
       // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
     }
-  }
+  };
 
   useEffect(() => {
     load();
   }, []);
 
   return (
-      <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell style={{ fontWeight: 'bold' }}>No</TableCell>
-              <TableCell style={{ fontWeight: 'bold' }} align="left">Issue</TableCell>
-              <TableCell style={{ fontWeight: 'bold' }} align="left">Level</TableCell>
-              <TableCell style={{ fontWeight: 'bold' }} align="left">URL</TableCell>
-              <TableCell style={{ fontWeight: 'bold' }} align="left">Time</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {
-              rows.map((row) => (
-                <Row key={row.index} row={row} />
-              ))
-            }
-          </TableBody>
-        </Table>
-      </TableContainer>
+    <TableContainer component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell style={{ fontWeight: "bold" }}>No</TableCell>
+            <TableCell style={{ fontWeight: "bold" }} align="left">
+              Issue
+            </TableCell>
+            <TableCell style={{ fontWeight: "bold" }} align="left">
+              Level
+            </TableCell>
+            <TableCell style={{ fontWeight: "bold" }} align="left">
+              URL
+            </TableCell>
+            <TableCell style={{ fontWeight: "bold" }} align="left">
+              Time
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <Row key={row.index} row={row} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
