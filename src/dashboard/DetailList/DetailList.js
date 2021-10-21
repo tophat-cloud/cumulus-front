@@ -47,7 +47,9 @@ const Row = (props) => {
   let referenceData = "";
 
   if (detailData == null || detailData === undefined) {
-    detailData = "{}";
+    descriptionData = "no-data";
+    suggestionData = "no-data";
+    referenceData = "no-data";
   } else {
     detailData = JSON.parse(detailData);
 
@@ -124,7 +126,17 @@ const Row = (props) => {
                 </ListItem>
                 <ListItem>
                   <strong style={{ marginRight: 8 }}>reference → </strong>
-                  <ListItemText primary={referenceData} />
+                  <ListItemText>
+                    {referenceData === "no-data" && (
+                      <ListItemText primary={referenceData} />
+                    )}
+
+                    {referenceData !== "no-data" && (
+                      <Link href={referenceData} target="_blank">
+                        {referenceData}
+                      </Link>
+                    )}
+                  </ListItemText>
                 </ListItem>
                 <br />
               </ul>
