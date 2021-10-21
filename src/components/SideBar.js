@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
@@ -10,11 +12,11 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import DnsIcon from "@material-ui/icons/Dns";
 import InfoIcon from "@material-ui/icons/Info";
 import clsx from "clsx";
-import React from "react";
+
 import { useStyles } from "../utils/useStyles";
 import ProjectSelect from "./ProjectSelector";
-import Logo from './Logo';
-
+import Logo from "./Logo";
+import api from "../utils/api";
 
 const mainListItems = (
   <div>
@@ -39,40 +41,52 @@ const mainListItems = (
   </div>
 );
 
-export default ({
-  open,
-  handleDrawerClose,
-}) => {
+export default ({ open, handleDrawerClose }) => {
   const classes = useStyles();
+
+  useEffect(() => {
+    checkNoProject();
+  }, []);
+
+  const checkNoProject = async () => {
+    const projectList = await api.getProjectList();
+    const isNoProject = projectList.length < 1;
+
+    if (isNoProject) {
+      alert(
+        "You haven't any project. Add new project to start tracking weakness!"
+      );
+    }
+  };
 
   return (
     <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, open || classes.drawerPaperClose),
-        }}
-        open={open}
-        style={{
-          width: 100,
-          position: 'absolute',
-        }}
-      >
-        <div className={classes.toolbarIcon}>
-          {/* <div style={{ width: "100%", float: "left", marginLeft: "25px" }}>
+      variant="permanent"
+      classes={{
+        paper: clsx(classes.drawerPaper, open || classes.drawerPaperClose),
+      }}
+      open={open}
+      style={{
+        width: 100,
+        position: "absolute",
+      }}
+    >
+      <div className={classes.toolbarIcon}>
+        {/* <div style={{ width: "100%", float: "left", marginLeft: "25px" }}>
             User name
           </div> */}
 
-          <Logo/>
+        <Logo />
 
-          {/* <IconButton onClick={handleDrawerClose}>
+        {/* <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton> */}
-        </div>
-        <Divider />
+      </div>
+      <Divider />
 
-        {/* <List>{projectList}</List> */}
-        {/* <Divider /> */}
-        <List>{mainListItems}</List>
-      </Drawer>
+      {/* <List>{projectList}</List> */}
+      {/* <Divider /> */}
+      <List>{mainListItems}</List>
+    </Drawer>
   );
-}
+};
