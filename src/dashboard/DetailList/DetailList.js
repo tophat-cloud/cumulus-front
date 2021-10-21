@@ -86,7 +86,7 @@ const Row = (props) => {
         <TableCell>{row.thunder_name}</TableCell>
         <TableCell
           style={{
-            color: ["red", "orange", "yellow"][row.priority - 1],
+            color: ["red", "orange", "green"][row.priority - 1],
             fontWeight: "bold",
           }}
         >
