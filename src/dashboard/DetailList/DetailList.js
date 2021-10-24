@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 import PropTypes from "prop-types";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
@@ -18,10 +21,12 @@ import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 import api from "../../utils/api";
+import Onboarding from "../../components/Onboarding";
+import InstallGuide from "../../components/InstallGuide";
+import Loader from "react-loader";
+import Color from "../../utils/color";
 
 dayjs.extend(relativeTime);
 
@@ -175,22 +180,53 @@ export default function DetailList() {
   // const classes = useStyles();
   // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const [isNoProject, setNoProject] = useState(false);
+  const [isNoDomain, setNoDomain] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
+  const [rows, setRows] = useState([]);
+
   useEffect(() => {
     checkNoProject();
+    load();
   }, []);
 
   const checkNoProject = async () => {
+    setLoading(true);
+
     const projectList = await api.getProjectList();
     const isNoProject = projectList.length < 1;
+    setNoProject(isNoProject);
 
     if (isNoProject) {
-      alert(
-        "You haven't any project. Add new project to start tracking weakness!"
-      );
+      setLoading(false);
+      return;
     }
+
+    const key = window.localStorage.getItem("key");
+    if (!key) {
+      window.localStorage.setItem("key", projectList[0].id);
+      window.location.reload();
+      return;
+    }
+
+    const project = projectList.find((v) => v.id === key);
+    setNoDomain(!Boolean(project && project.domain));
+
+    setLoading(false);
   };
 
-  const [rows, setRows] = useState([]);
+  if (isLoading) {
+    return <Loader color={Color.primary} left="calc(50% + 100px)" />;
+  }
+
+  if (isNoProject) {
+    return <Onboarding />;
+  }
+
+  if (isNoDomain) {
+    return <InstallGuide />;
+  }
 
   const load = async () => {
     const key = window.localStorage.getItem("key");
@@ -206,10 +242,6 @@ export default function DetailList() {
       // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
     }
   };
-
-  useEffect(() => {
-    load();
-  }, []);
 
   return (
     <TableContainer component={Paper}>
