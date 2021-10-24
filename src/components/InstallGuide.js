@@ -41,11 +41,11 @@ export default () => {
       <Icon src={icon} width={100} height={100} />
 
       <NoticeTitle>Almost done!</NoticeTitle>
-      <NoticeText>Did you install SDK not yet? It's very simple.</NoticeText>
+      <NoticeText>Didn't you install SDK yet? It's very simple.</NoticeText>
 
       <StartButton
         variant="text"
-        onClick={() => window.location.href = '/dashboard/documents'}
+        onClick={() => (window.location.href = "/dashboard/documents")}
       >
         <strong style={{ color: Color.primary }}>Go to Install</strong>
       </StartButton>

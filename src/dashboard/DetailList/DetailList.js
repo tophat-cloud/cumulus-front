@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 import PropTypes from "prop-types";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
@@ -18,10 +21,13 @@ import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 import api from "../../utils/api";
+import Onboarding from "../../components/Onboarding";
+import InstallGuide from "../../components/InstallGuide";
+import CleanGuide from "../../components/CleanGuide";
+import Loader from "react-loader";
+import Color from "../../utils/color";
 
 dayjs.extend(relativeTime);
 
@@ -175,22 +181,56 @@ export default function DetailList() {
   // const classes = useStyles();
   // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const [isNoProject, setNoProject] = useState(false);
+  const [isNoDomain, setNoDomain] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
+  const [projectStatus, setProjectStatus] = useState("");
+  const isEmptyWeakness = projectStatus === "thunder not found";
+
+  const [rows, setRows] = useState([]);
+
   useEffect(() => {
     checkNoProject();
+    load();
   }, []);
 
   const checkNoProject = async () => {
+    setLoading(true);
+
     const projectList = await api.getProjectList();
     const isNoProject = projectList.length < 1;
+    setNoProject(isNoProject);
 
     if (isNoProject) {
-      alert(
-        "You haven't any project. Add new project to start tracking weakness!"
-      );
+      setLoading(false);
+      return;
     }
+
+    const key = window.localStorage.getItem("key");
+    if (!key) {
+      window.localStorage.setItem("key", projectList[0].id);
+      window.location.reload();
+      return;
+    }
+
+    const project = projectList.find((v) => v.id === key);
+    setNoDomain(!Boolean(project && project.domain));
+
+    setLoading(false);
   };
 
-  const [rows, setRows] = useState([]);
+  if (isLoading) {
+    return <Loader color={Color.primary} left="calc(50% + 100px)" />;
+  }
+
+  if (isNoProject) {
+    return <Onboarding />;
+  }
+
+  if (isNoDomain) {
+    return <InstallGuide />;
+  }
 
   const load = async () => {
     const key = window.localStorage.getItem("key");
@@ -204,40 +244,53 @@ export default function DetailList() {
     } catch (err) {
       console.log(err.response);
       // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
+
+      const errorData = err.response.data;
+
+      if (errorData === "thunder not found") {
+        setProjectStatus(errorData);
+      }
     }
   };
 
-  useEffect(() => {
-    load();
-  }, []);
-
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell style={{ fontWeight: "bold" }}>No</TableCell>
-            <TableCell style={{ fontWeight: "bold" }} align="left">
-              Issue
-            </TableCell>
-            <TableCell style={{ fontWeight: "bold" }} align="left">
-              Level
-            </TableCell>
-            <TableCell style={{ fontWeight: "bold" }} align="left">
-              URL
-            </TableCell>
-            <TableCell style={{ fontWeight: "bold" }} align="left">
-              Time
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.index} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell style={{ fontWeight: "bold" }}>No</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">
+                Issue
+              </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">
+                Level
+              </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">
+                URL
+              </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">
+                Time
+              </TableCell>
+            </TableRow>
+          </TableHead>
+
+          {isEmptyWeakness || (
+            <TableBody>
+              {rows.map((row) => (
+                <Row key={row.index} row={row} />
+              ))}
+            </TableBody>
+          )}
+        </Table>
+      </TableContainer>
+
+      {isEmptyWeakness && (
+        <div style={{ marginTop: "10%" }}>
+          <CleanGuide />
+        </div>
+      )}
+    </>
   );
 }
