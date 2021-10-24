@@ -25,6 +25,7 @@ import ListItem from "@material-ui/core/ListItem";
 import api from "../../utils/api";
 import Onboarding from "../../components/Onboarding";
 import InstallGuide from "../../components/InstallGuide";
+import CleanGuide from "../../components/CleanGuide";
 import Loader from "react-loader";
 import Color from "../../utils/color";
 
@@ -184,6 +185,9 @@ export default function DetailList() {
   const [isNoDomain, setNoDomain] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
+  const [projectStatus, setProjectStatus] = useState("");
+  const isEmptyWeakness = projectStatus === "thunder not found";
+
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
@@ -240,36 +244,53 @@ export default function DetailList() {
     } catch (err) {
       console.log(err.response);
       // alert(`Weakness를 불러오는 중 에러가 발생했습니다: ${error}`);
+
+      const errorData = err.response.data;
+
+      if (errorData === "thunder not found") {
+        setProjectStatus(errorData);
+      }
     }
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell style={{ fontWeight: "bold" }}>No</TableCell>
-            <TableCell style={{ fontWeight: "bold" }} align="left">
-              Issue
-            </TableCell>
-            <TableCell style={{ fontWeight: "bold" }} align="left">
-              Level
-            </TableCell>
-            <TableCell style={{ fontWeight: "bold" }} align="left">
-              URL
-            </TableCell>
-            <TableCell style={{ fontWeight: "bold" }} align="left">
-              Time
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.index} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell style={{ fontWeight: "bold" }}>No</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">
+                Issue
+              </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">
+                Level
+              </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">
+                URL
+              </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">
+                Time
+              </TableCell>
+            </TableRow>
+          </TableHead>
+
+          {isEmptyWeakness || (
+            <TableBody>
+              {rows.map((row) => (
+                <Row key={row.index} row={row} />
+              ))}
+            </TableBody>
+          )}
+        </Table>
+      </TableContainer>
+
+      {isEmptyWeakness && (
+        <div style={{ marginTop: "10%" }}>
+          <CleanGuide />
+        </div>
+      )}
+    </>
   );
 }
