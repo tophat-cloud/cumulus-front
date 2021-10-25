@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import api from '../utils/api';
+import api from "../utils/api";
 
 import Copyright from "../components/Footer";
 
@@ -78,7 +78,7 @@ export default function SignUp() {
   };
 
   return (
-    <Container component="main" maxWidth="xs" style={{ marginTop: '25vh' }}>
+    <Container component="main" maxWidth="xs" style={{ marginTop: "25vh" }}>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -121,7 +121,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 name="confirm"
-                label="Confirm"
+                label="Confirm password"
                 type="password"
                 id="confirm"
                 autoComplete="current-password"
@@ -150,9 +150,7 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        {/* <Copyright /> */}
-      </Box>
+      <Box mt={5}>{/* <Copyright /> */}</Box>
     </Container>
   );
 }
