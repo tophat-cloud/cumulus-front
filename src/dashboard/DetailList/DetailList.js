@@ -90,7 +90,7 @@ const Row = (props) => {
           </IconButton>
         </TableCell>
 
-        <TableCell>{numberIndex}</TableCell>
+        <TableCell>{numberIndex + 1}</TableCell>
         <TableCell>{row.thunder_name}</TableCell>
         <TableCell
           style={{
