@@ -40,7 +40,7 @@ const useRowStyles = makeStyles({
 });
 
 const Row = (props) => {
-  const { row } = props;
+  const { row, numberIndex } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
 
@@ -90,7 +90,7 @@ const Row = (props) => {
           </IconButton>
         </TableCell>
 
-        <TableCell>{row.id}</TableCell>
+        <TableCell>{numberIndex}</TableCell>
         <TableCell>{row.thunder_name}</TableCell>
         <TableCell
           style={{
@@ -260,7 +260,7 @@ export default function DetailList() {
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell style={{ fontWeight: "bold" }}>No</TableCell>
+              <TableCell style={{ fontWeight: "bold" }}>No.</TableCell>
               <TableCell style={{ fontWeight: "bold" }} align="left">
                 Issue
               </TableCell>
@@ -278,8 +278,8 @@ export default function DetailList() {
 
           {isEmptyWeakness || (
             <TableBody>
-              {rows.map((row) => (
-                <Row key={row.index} row={row} />
+              {rows.map((row, numberIndex) => (
+                <Row key={row.index} row={row} numberIndex={numberIndex} />
               ))}
             </TableBody>
           )}
