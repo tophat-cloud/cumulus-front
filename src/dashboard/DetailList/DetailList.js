@@ -105,7 +105,9 @@ const Row = (props) => {
             {row.url}
           </Link>
         </TableCell>
-        <TableCell>{dayjs(row.created_at).format("HH:mm:ss")}</TableCell>
+        <TableCell>
+          {dayjs(row.created_at).format("YYYY-MM-DD HH:mm:ss")}
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
