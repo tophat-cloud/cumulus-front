@@ -90,7 +90,7 @@ const Row = (props) => {
           </IconButton>
         </TableCell>
 
-        <TableCell>{numberIndex + 1}</TableCell>
+        <TableCell>{numberIndex}</TableCell>
         <TableCell>{row.thunder_name}</TableCell>
         <TableCell
           style={{
@@ -279,7 +279,11 @@ export default function DetailList() {
           {isEmptyWeakness || (
             <TableBody>
               {rows.map((row, numberIndex) => (
-                <Row key={row.index} row={row} numberIndex={numberIndex} />
+                <Row
+                  key={row.index}
+                  row={row}
+                  numberIndex={rows.length - numberIndex}
+                />
               ))}
             </TableBody>
           )}
