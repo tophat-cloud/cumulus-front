@@ -90,7 +90,7 @@ const Row = (props) => {
           </IconButton>
         </TableCell>
 
-        <TableCell>{numberIndex + 1}</TableCell>
+        <TableCell>{numberIndex}</TableCell>
         <TableCell>{row.thunder_name}</TableCell>
         <TableCell
           style={{
@@ -105,7 +105,9 @@ const Row = (props) => {
             {row.url}
           </Link>
         </TableCell>
-        <TableCell>{dayjs(row.created_at).format("HH:mm:ss")}</TableCell>
+        <TableCell>
+          {dayjs(row.created_at).format("YYYY-MM-DD HH:mm:ss")}
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -279,7 +281,11 @@ export default function DetailList() {
           {isEmptyWeakness || (
             <TableBody>
               {rows.map((row, numberIndex) => (
-                <Row key={row.index} row={row} numberIndex={numberIndex} />
+                <Row
+                  key={row.index}
+                  row={row}
+                  numberIndex={rows.length - numberIndex}
+                />
               ))}
             </TableBody>
           )}
